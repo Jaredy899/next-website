@@ -8,7 +8,7 @@ export default function Home() {
       <Head>
         <title>Jared Cervantes</title>
         <meta name="description" content="Personal website of Jared Cervantes" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" />
       </Head>
       <main>
         <div className="content">
