@@ -47,6 +47,15 @@ const JCLogo: React.FC<JCLogoProps> = ({ className }) => {
         svg:hover .c {
           transform: translateX(25px) scale(1.3);
         }
+
+        @media (max-width: 768px) {
+          svg:hover .j {
+            transform: translateX(-10px) scale(1.1);
+          }
+          svg:hover .c {
+            transform: translateX(10px) scale(1.1);
+          }
+        }
       `}</style>
     </svg>
   );
