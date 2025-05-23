@@ -34,30 +34,30 @@ const ThemeToggle: React.FC = () => {
       </div>
       <style jsx>{`
         .theme-toggle {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0.5rem;
           background: none;
-          border: none;
+          border: 1px solid var(--border);
+          border-radius: 0.5rem;
           color: var(--text);
           cursor: pointer;
-          padding: 0.25rem;
-          position: fixed;
-          top: 0.75rem;
-          right: 0.75rem;
-          transition: all 0.3s ease;
-          opacity: 0.8;
+          transition: all 0.2s ease;
         }
         .theme-toggle:hover {
+          background: var(--hover);
           transform: scale(1.1);
-          opacity: 1;
         }
         .icon-container {
           position: relative;
-          width: 20px;
-          height: 20px;
+          width: 1.25rem;
+          height: 1.25rem;
         }
         .sun, .moon {
           position: absolute;
-          width: 20px;
-          height: 20px;
+          width: 1.25rem;
+          height: 1.25rem;
           transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .light .sun {
