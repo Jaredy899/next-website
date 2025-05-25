@@ -49,7 +49,7 @@ const Navigation: React.FC<NavigationProps> = ({ onBlogClick }) => {
           height: 4rem;
           background: var(--background);
           border-bottom: 1px solid var(--border);
-          z-index: 100;
+          z-index: 1002;
         }
 
         .nav-content {
@@ -59,7 +59,7 @@ const Navigation: React.FC<NavigationProps> = ({ onBlogClick }) => {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 0 1rem;
+          padding: 0 2rem;
         }
 
         .blog-button {
@@ -80,7 +80,7 @@ const Navigation: React.FC<NavigationProps> = ({ onBlogClick }) => {
 
         @media (max-width: 768px) {
           .nav-content {
-            padding: 0 0.5rem;
+            padding: 0 1rem;
           }
         }
       `}</style>

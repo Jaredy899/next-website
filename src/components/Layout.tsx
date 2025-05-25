@@ -7,6 +7,7 @@ import type { BlogPost } from '~/utils/blog';
 import { enableViewTransitions } from '~/app/view-transitions';
 import Link from 'next/link';
 import JCLogo from './JCLogo';
+import ThemeToggle from './ThemeToggle';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -51,16 +52,43 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
 
   return (
     <div className={layoutClasses}>
-      {router.pathname.startsWith('/blog') && (
-        <header>
-          <Link href="/" onClick={(e) => handleNavigation(e, '/')}>
-            <div className="logo-container">
-              <JCLogo />
-            </div>
-          </Link>
-        </header>
-      )}
-      <Navigation onBlogClick={toggleSidebar} />
+      <header className="main-header">
+        <div className="header-content">
+          <div className="nav-controls">
+            <button 
+              onClick={toggleSidebar}
+              className="blog-button"
+              aria-label="Toggle blog sidebar"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+              </svg>
+            </button>
+          </div>
+          {router.pathname.startsWith('/blog') && (
+            <Link href="/" onClick={(e) => handleNavigation(e, '/')}>
+              <div className="logo-container">
+                <JCLogo />
+              </div>
+            </Link>
+          )}
+          <div className="nav-controls">
+            <ThemeToggle />
+          </div>
+        </div>
+      </header>
       <Sidebar 
         isOpen={isSidebarOpen} 
         onClose={() => setIsSidebarOpen(false)}
@@ -97,26 +125,30 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
           margin-top: 4rem;
         }
 
-        header {
-          padding: 1rem;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        /* Blog page header */
-        .layout.blog header {
+        .main-header {
           position: fixed;
           top: 0;
           left: 0;
           right: 0;
-          z-index: 1002;
+          height: 4rem;
           background: var(--background);
+          border-bottom: 1px solid var(--border);
+          z-index: 1001;
+        }
+
+        .header-content {
+          max-width: 1200px;
+          margin: 0 auto;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 2rem;
         }
 
         .logo-container {
           color: var(--text);
-          view-transition-name: jc-logo;
+          view-transition-name: jc-logo-blog;
           width: 40px;
           height: 40px;
           display: block;
@@ -126,6 +158,29 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
           width: 100%;
           height: 100%;
           color: inherit;
+        }
+
+        .nav-controls {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          width: 40px; /* Match logo width to maintain center alignment */
+        }
+
+        .blog-button {
+          background: none;
+          border: none;
+          color: var(--text);
+          cursor: pointer;
+          padding: 0.5rem;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          transition: color 0.2s ease;
+        }
+
+        .blog-button:hover {
+          color: var(--accent);
         }
 
         @media (max-width: 768px) {
@@ -138,20 +193,17 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
             height: 32px;
           }
 
+          .nav-controls {
+            width: 32px; /* Match mobile logo width */
+          }
+
           .layout.blog .main-content {
             margin-top: 3rem;
           }
-        }
 
-        .navigation {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 4rem;
-          background: var(--background);
-          border-bottom: 1px solid var(--border);
-          z-index: 1100;
+          .header-content {
+            padding: 0 1rem;
+          }
         }
       `}</style>
     </div>
