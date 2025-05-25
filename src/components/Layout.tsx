@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useTheme } from '~/context/ThemeContext';
-import Navigation from './Navigation';
 import Sidebar from './Sidebar';
 import type { BlogPost } from '~/utils/blog';
 import { enableViewTransitions } from '~/app/view-transitions';

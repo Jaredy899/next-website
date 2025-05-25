@@ -7,7 +7,7 @@ interface NavigationProps {
 }
 
 const Navigation: React.FC<NavigationProps> = ({ onBlogClick }) => {
-  const { theme } = useTheme();
+  useTheme();
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
