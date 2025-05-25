@@ -142,6 +142,17 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
             margin-top: 3rem;
           }
         }
+
+        .navigation {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 4rem;
+          background: var(--background);
+          border-bottom: 1px solid var(--border);
+          z-index: 1100;
+        }
       `}</style>
     </div>
   );

@@ -34,4 +34,4 @@ Here are some of the key ingredients that went into making this blog:
 // A little code snippet to show off code blocks!
 const greeting = "Hello, Astro Blog!";
 console.log(greeting);
-``` 
+```
