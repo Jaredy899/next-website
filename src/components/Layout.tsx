@@ -143,7 +143,7 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 0 2rem;
+          padding: 0.5rem 2rem;
         }
 
         .logo-container {
