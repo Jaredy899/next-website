@@ -122,7 +122,7 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
 
         /* Blog page content */
         .layout.blog .main-content {
-          margin-top: 4rem;
+          margin-top: 1rem;
         }
 
         .main-header {
@@ -149,8 +149,8 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
         .logo-container {
           color: var(--text);
           view-transition-name: jc-logo-blog;
-          width: 40px;
-          height: 40px;
+          width: 60px;
+          height: 60px;
           display: block;
         }
 
@@ -164,7 +164,7 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
           display: flex;
           align-items: center;
           gap: 1rem;
-          width: 40px; /* Match logo width to maintain center alignment */
+          width: 60px; /* Match logo width to maintain center alignment */
         }
 
         .blog-button {
@@ -189,12 +189,12 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
           }
           
           .logo-container {
-            width: 32px;
-            height: 32px;
+            width: 48px;
+            height: 48px;
           }
 
           .nav-controls {
-            width: 32px; /* Match mobile logo width */
+            width: 48px; /* Match mobile logo width */
           }
 
           .layout.blog .main-content {
