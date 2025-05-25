@@ -2,7 +2,7 @@
 title: "The Magic of Flight: A Personal Journey Through Aviation"
 description: "A heartfelt reflection on my lifelong passion for aviation, inspired by my grandfather and nurtured through flight simulators"
 pubDate: 2025-06-16
-draft: true
+draft: false
 ---
 
 # ✈️ The Magic of Flight
@@ -16,6 +16,11 @@ My love for airplanes didn't just happen overnight. My grandfather also loved go
 One of my earliest memories is sitting in my grandfather's lap, watching him navigate through Microsoft Flight Simulator. Today, I still find myself spending countless hours in flight simulators, practicing approaches, learning new aircraft, and reliving those precious moments with my grandfather.
 
 > "The smell of jet fuel at airports, that distinct aroma that somehow manages to be both industrial and exciting – it's like a time machine that instantly transports me back to those childhood days at the airport with my grandfather."
+
+<video controls style="width: 100%; aspect-ratio: 16/9;">
+  <source src="https://22yjaf7c2x.ufs.sh/f/avP9Ws4j0vyMewPsDnvZunTNIBq8K0FEPavgJD7jyUtzYXmw" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ## 🌟 The Sensory Experience of Flying
 

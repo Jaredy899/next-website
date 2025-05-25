@@ -21,9 +21,11 @@ export default function Home({ posts }: HomeProps) {
       </Head>
 
       <div className="content">
-        <div className="logo-container">
-          <JCLogo />
-        </div>
+        <Link href="/" className="logo-link">
+          <div className="logo-container">
+            <JCLogo />
+          </div>
+        </Link>
         <a
           href="https://home.jaredcervantes.com"
           className="home-link"
@@ -56,12 +58,21 @@ export default function Home({ posts }: HomeProps) {
           height: calc(100vh - 4rem);
           margin-top: -2rem;
         }
+
+        .logo-link {
+          color: var(--text);
+          text-decoration: none;
+          transition: color 0.2s ease;
+          display: block;
+        }
+
         .logo-container {
           width: 400px;
           height: 400px;
+          view-transition-name: jc-logo;
           color: var(--text);
-          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .home-link {
           color: var(--text);
           text-decoration: none;
@@ -71,16 +82,19 @@ export default function Home({ posts }: HomeProps) {
           align-items: center;
           justify-content: center;
         }
+
         .home-link:hover {
           color: var(--text);
           opacity: 0.8;
           transform: scale(1.1);
         }
+
         .icon-container {
           display: flex;
           align-items: center;
           justify-content: center;
         }
+
         .nav-icon {
           fill: currentColor;
           width: 32px;

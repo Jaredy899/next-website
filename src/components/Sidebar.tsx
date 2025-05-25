@@ -62,6 +62,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
           z-index: 1001;
           padding: 2rem;
           visibility: hidden;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
         }
 
         .sidebar.active {
@@ -109,6 +112,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
 
         .sidebar nav {
           margin-top: 2rem;
+          flex: 1;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
         }
 
         .sidebar h2 {
@@ -125,6 +132,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
 
         .sidebar li {
           margin: 0.5rem 0;
+          width: 100%;
         }
 
         .sidebar a {
@@ -132,7 +140,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
           text-decoration: none;
           font-size: 1.1rem;
           transition: color 0.2s ease;
-          display: inline;
+          display: inline-block;
+          word-break: break-word;
+          line-height: 1.4;
+          width: 100%;
         }
 
         .sidebar a:hover {
@@ -143,6 +154,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
           font-size: 0.9rem;
           opacity: 0.7;
           margin-left: 0.25rem;
+          white-space: nowrap;
+          display: inline-block;
         }
 
         .post-separator {
@@ -153,6 +166,29 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
 
         .blog-archive {
           margin-top: 1rem;
+          max-height: calc(100vh - 8rem);
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        @media (max-width: 768px) {
+          .sidebar {
+            width: 100%;
+            left: -100%;
+          }
+          
+          .blog-archive {
+            max-height: calc(100vh - 6rem);
+          }
+
+          .sidebar a {
+            font-size: 1rem;
+            padding-right: 2rem;
+          }
+
+          .sidebar li {
+            padding-right: 1rem;
+          }
         }
       `}</style>
     </>

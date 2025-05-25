@@ -42,18 +42,18 @@ const JCLogo: React.FC<JCLogoProps> = ({ className }) => {
           transform: translateX(5px);
         }
         svg:hover .j {
-          transform: translateX(-25px) scale(1.3);
+          transform: translateX(-15px) scale(1.2);
         }
         svg:hover .c {
-          transform: translateX(25px) scale(1.3);
+          transform: translateX(15px) scale(1.2);
         }
 
         @media (max-width: 768px) {
           svg:hover .j {
-            transform: translateX(-10px) scale(1.1);
+            transform: translateX(-15px) scale(1.15);
           }
           svg:hover .c {
-            transform: translateX(10px) scale(1.1);
+            transform: translateX(15px) scale(1.15);
           }
         }
       `}</style>

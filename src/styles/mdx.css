@@ -1,0 +1,86 @@
+/* Import highlight.js styles */
+@import 'highlight.js/styles/github-dark.css';
+
+/* MDX Content Styles */
+.mdx-content {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.mdx-content h1 {
+  font-family: 'Inter', sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 2rem 0 1rem;
+  color: var(--text);
+}
+
+.mdx-content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  margin: 2rem 0 1rem;
+}
+
+.mdx-content p {
+  margin: 1.5rem 0;
+}
+
+.mdx-content ul, .mdx-content ol {
+  margin: 1.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.mdx-content li {
+  margin: 0.5rem 0;
+}
+
+.mdx-content a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.mdx-content a:hover {
+  text-decoration: underline;
+}
+
+.mdx-content pre {
+  background: #1a1a1a;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.mdx-content code {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+}
+
+.mdx-content .hljs {
+  background: transparent;
+  padding: 0;
+}
+
+.mdx-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.5rem auto;
+  border-radius: 8px;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .mdx-content {
+    font-size: 1rem;
+  }
+
+  .mdx-content h1 {
+    font-size: 1.6rem;
+  }
+
+  .mdx-content h2 {
+    font-size: 1.4rem;
+  }
+} 

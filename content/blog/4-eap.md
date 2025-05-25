@@ -9,7 +9,7 @@ draft: false
 
 > A deep dive into the critical importance of early identification and intervention in psychosis, based on insights from the Early Psychosis Care Center Conference in Missouri.
 
-![Navigate](https://22yjaf7c2x.ufs.sh/f/avP9Ws4j0vyMcZlRGJAWSqJFnkaZ1T9Isry6O8XDBd4u5Clo)
+[![Navigate](https://22yjaf7c2x.ufs.sh/f/avP9Ws4j0vyMcZlRGJAWSqJFnkaZ1T9Isry6O8XDBd4u5Clo)](https://www.navigateconsultants.org/)
 
 I recently had the opportunity to attend the Early Psychosis Care Center Conference in Missouri, an event focused on the critical importance of early identification and intervention in psychosis. As someone who works in a program called [Navigate](https://www.navigateconsultants.org/), dedicated to early psychosis care, attending this conference was particularly valuable. The conference brought together a diverse group of professionals, individuals with lived experience, and family members, all dedicated to improving care for those affected by psychosis. It was an incredibly insightful experience, highlighting key areas for enhancing support and treatment. You can learn more about the conference at [EPCMissouri.org](https://www.epcmissouri.org/).
 

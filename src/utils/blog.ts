@@ -1,81 +1,93 @@
-import { readFileSync, readdirSync } from 'fs';
-import { join } from 'path';
+import fs from 'fs';
+import path from 'path';
 import matter from 'gray-matter';
+
+const postsDirectory = path.join(process.cwd(), 'content/blog');
 
 export interface BlogPost {
   slug: string;
   title: string;
+  excerpt: string;
   pubDate: string;
   content: string;
-  excerpt: string;
-  draft: boolean;
+  draft?: boolean;
 }
 
-const postsDirectory = join(process.cwd(), 'content/blog');
-
 export function getAllPosts(): BlogPost[] {
-  // Get all files in the posts directory
-  const fileNames = readdirSync(postsDirectory);
-  
-  // Get the data from each file
-  const posts = fileNames.map((fileName) => {
-    // Remove ".md" or ".mdx" from file name to get slug
-    const slug = fileName.replace(/\.(md|mdx)$/, '');
+  const fileNames = fs.readdirSync(postsDirectory);
+  const allPostsData = fileNames
+    .filter((fileName) => {
+      // Only include .mdx files
+      return fileName.endsWith('.mdx');
+    })
+    .map((fileName) => {
+      // Remove ".mdx" from file name to get slug
+      const slug = fileName.replace(/\.mdx$/, '');
 
-    // Read markdown file as string
-    const fullPath = join(postsDirectory, fileName);
-    const fileContents = readFileSync(fullPath, 'utf8');
+      // Read markdown file as string
+      const fullPath = path.join(postsDirectory, fileName);
+      const fileContents = fs.readFileSync(fullPath, 'utf8');
 
-    // Use gray-matter to parse the post metadata section
-    const { data, content } = matter(fileContents);
+      // Use gray-matter to parse the post metadata section
+      const { data, content } = matter(fileContents);
 
-    // Create excerpt from content
-    const excerpt = content.split('\n').slice(0, 3).join(' ');
+      // Ensure pubDate is a string in ISO format
+      const pubDate = new Date(data.pubDate).toISOString();
 
-    // Combine the data with the slug
-    return {
-      slug,
-      title: data.title,
-      pubDate: new Date(data.pubDate).toISOString(),
-      content,
-      excerpt,
-      draft: data.draft ?? false,
-    };
-  });
+      return {
+        slug,
+        title: data.title,
+        excerpt: data.description || '',
+        pubDate,
+        content,
+        draft: data.draft || false,
+      };
+    });
 
-  // Sort posts by date and filter out drafts
-  return posts
-    .filter(post => !post.draft)
-    .sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
+  // Sort posts by date
+  return allPostsData
+    .filter((post) => !post.draft)
+    .sort((a, b) => (a.pubDate < b.pubDate ? 1 : -1));
 }
 
 export function getPostBySlug(slug: string): BlogPost | null {
   try {
-    // Try .mdx first, then fall back to .md
-    let fullPath = join(postsDirectory, `${slug}.mdx`);
-    try {
-      readFileSync(fullPath, 'utf8');
-    } catch {
-      fullPath = join(postsDirectory, `${slug}.md`);
-    }
-
-    const fileContents = readFileSync(fullPath, 'utf8');
-
-    // Use gray-matter to parse the post metadata section
+    // Try .mdx first
+    const fullPath = path.join(postsDirectory, `${slug}.mdx`);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
 
-    // Create excerpt from content
-    const excerpt = content.split('\n').slice(0, 3).join(' ');
+    // Ensure pubDate is a string in ISO format
+    const pubDate = new Date(data.pubDate).toISOString();
 
     return {
       slug,
       title: data.title,
-      pubDate: new Date(data.pubDate).toISOString(),
+      excerpt: data.description || '',
+      pubDate,
       content,
-      excerpt,
-      draft: data.draft ?? false,
+      draft: data.draft || false,
     };
-  } catch (error) {
-    return null;
+  } catch (e) {
+    // If .mdx doesn't exist, try .md
+    try {
+      const fullPath = path.join(postsDirectory, `${slug}.md`);
+      const fileContents = fs.readFileSync(fullPath, 'utf8');
+      const { data, content } = matter(fileContents);
+
+      // Ensure pubDate is a string in ISO format
+      const pubDate = new Date(data.pubDate).toISOString();
+
+      return {
+        slug,
+        title: data.title,
+        excerpt: data.description || '',
+        pubDate,
+        content,
+        draft: data.draft || false,
+      };
+    } catch (e) {
+      return null;
+    }
   }
 } 
