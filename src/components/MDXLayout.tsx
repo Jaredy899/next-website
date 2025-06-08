@@ -2,7 +2,6 @@ import type { ReactNode } from 'react';
 import { formatDate } from '../utils/date';
 import '../styles/mdx.css';
 import '../styles/blog.css';
-import CodeBlock from './CodeBlock';
 
 interface MDXLayoutProps {
   children: ReactNode;
@@ -20,7 +19,6 @@ export function MDXLayout({ children, metadata }: MDXLayoutProps) {
       <div className="mdx-content">
         {children}
       </div>
-      <CodeBlock />
     </article>
   );
 } 
