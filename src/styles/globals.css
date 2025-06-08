@@ -7,6 +7,9 @@
   --background: #ffffff;
   --text-rgb: 0, 0, 0;
   --background-rgb: 255, 255, 255;
+  --border: #e5e5e5;
+  --code-bg: #f8f8f8;
+  --accent: #0070f3;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,6 +18,9 @@
     --background: #000000;
     --text-rgb: 255, 255, 255;
     --background-rgb: 0, 0, 0;
+    --border: #333333;
+    --code-bg: #1e1e1e;
+    --accent: #0070f3;
   }
 }
 

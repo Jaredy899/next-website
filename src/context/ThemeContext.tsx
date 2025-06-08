@@ -31,11 +31,17 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       document.documentElement.style.setProperty('--background', '#000000');
       document.documentElement.style.setProperty('--text-rgb', '255, 255, 255');
       document.documentElement.style.setProperty('--background-rgb', '0, 0, 0');
+      document.documentElement.style.setProperty('--border', '#333333');
+      document.documentElement.style.setProperty('--code-bg', '#1e1e1e');
+      document.documentElement.style.setProperty('--accent', '#0070f3');
     } else {
       document.documentElement.style.setProperty('--text', '#000000');
       document.documentElement.style.setProperty('--background', '#ffffff');
       document.documentElement.style.setProperty('--text-rgb', '0, 0, 0');
       document.documentElement.style.setProperty('--background-rgb', '255, 255, 255');
+      document.documentElement.style.setProperty('--border', '#e5e5e5');
+      document.documentElement.style.setProperty('--code-bg', '#f8f8f8');
+      document.documentElement.style.setProperty('--accent', '#0070f3');
     }
     localStorage.setItem('theme', theme);
   }, [theme]);
