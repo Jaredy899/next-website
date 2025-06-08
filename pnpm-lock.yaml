@@ -42,16 +42,16 @@ importers:
         specifier: ^2.2.1
         version: 2.2.1(marked@15.0.12)
       next:
-        specifier: ^15.2.3
+        specifier: ^15.3.3
         version: 15.3.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       next-mdx-remote:
         specifier: ^5.0.0
         version: 5.0.0(@types/react@19.1.6)(acorn@8.15.0)(react@19.1.0)
       react:
-        specifier: ^19.0.0
+        specifier: ^19.1.0
         version: 19.1.0
       react-dom:
-        specifier: ^19.0.0
+        specifier: ^19.1.0
         version: 19.1.0(react@19.1.0)
       react-syntax-highlighter:
         specifier: ^15.6.1
@@ -72,56 +72,56 @@ importers:
         specifier: ^16.0.1
         version: 16.0.1
       shiki:
-        specifier: ^3.4.2
+        specifier: ^3.6.0
         version: 3.6.0
       zod:
-        specifier: ^3.24.2
+        specifier: ^3.25.56
         version: 3.25.56
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3.3.1
         version: 3.3.1
       '@tailwindcss/postcss':
-        specifier: ^4.0.15
+        specifier: ^4.1.8
         version: 4.1.8
       '@types/he':
         specifier: ^1.2.3
         version: 1.2.3
       '@types/node':
-        specifier: ^20.14.10
+        specifier: ^20.19.0
         version: 20.19.0
       '@types/react':
-        specifier: ^19.0.0
+        specifier: ^19.1.6
         version: 19.1.6
       '@types/react-dom':
-        specifier: ^19.0.0
+        specifier: ^19.1.6
         version: 19.1.6(@types/react@19.1.6)
       autoprefixer:
         specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.4)
       eslint:
-        specifier: ^9.23.0
+        specifier: ^9.28.0
         version: 9.28.0(jiti@2.4.2)
       eslint-config-next:
-        specifier: ^15.2.3
+        specifier: ^15.3.3
         version: 15.3.3(eslint@9.28.0(jiti@2.4.2))(typescript@5.8.3)
       postcss:
-        specifier: ^8.5.3
+        specifier: ^8.5.4
         version: 8.5.4
       prettier:
         specifier: ^3.5.3
         version: 3.5.3
       prettier-plugin-tailwindcss:
-        specifier: ^0.6.11
+        specifier: ^0.6.12
         version: 0.6.12(prettier@3.5.3)
       tailwindcss:
-        specifier: ^4.1.5
+        specifier: ^4.1.8
         version: 4.1.8
       typescript:
-        specifier: ^5.8.2
+        specifier: ^5.8.3
         version: 5.8.3
       typescript-eslint:
-        specifier: ^8.27.0
+        specifier: ^8.33.1
         version: 8.33.1(eslint@9.28.0(jiti@2.4.2))(typescript@5.8.3)
 
 packages:
