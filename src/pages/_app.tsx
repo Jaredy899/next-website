@@ -6,6 +6,8 @@ import type { BlogPost } from "~/utils/blog";
 
 import "~/styles/globals.css";
 import "~/styles/view-transitions.css";
+import "~/styles/blog.css";
+import "~/styles/mdx.css";
 
 const geist = Geist({
   subsets: ["latin"],

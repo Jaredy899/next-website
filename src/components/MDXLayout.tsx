@@ -3,8 +3,6 @@ import { MDXProvider } from '@mdx-js/react';
 import { formatDate } from '../utils/date';
 import CodeCopyButton from './CodeCopyButton';
 import { MDXComponents } from './MDXComponents';
-import '../styles/mdx.css';
-import '../styles/blog.css';
 
 interface MDXLayoutProps {
   children: ReactNode;
