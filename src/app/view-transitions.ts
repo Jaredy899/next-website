@@ -1,18 +1,29 @@
 // View Transitions utility for React 19+ and browser compatibility
 
+interface ViewTransitionLike {
+  finished: Promise<undefined>;
+  ready: Promise<undefined>;
+  updateCallbackDone: Promise<undefined>;
+  skipTransition: () => void;
+}
+
 export function enableViewTransitions() {
   if (typeof document !== 'undefined') {
     // Check if browser supports View Transitions API
-    if (!document.startViewTransition) {
+    if (!('startViewTransition' in document)) {
       // Polyfill for browsers that don't support View Transitions
-      (document as any).startViewTransition = (callback: () => void) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access
+      (document as any).startViewTransition = (callback: () => void): ViewTransitionLike => {
         // Execute callback immediately for unsupported browsers
         callback();
         return {
           finished: Promise.resolve(undefined),
           ready: Promise.resolve(undefined),
           updateCallbackDone: Promise.resolve(undefined),
-          skipTransition: () => {},
+          skipTransition: () => {
+            // Implementation for skipping transition
+            console.log('View transition skipped');
+          },
         };
       };
     }
@@ -25,8 +36,9 @@ export function isViewTransitionSupported(): boolean {
 
 // Helper function to wrap navigation with view transitions
 export function navigateWithTransition(callback: () => void): void {
-  if (isViewTransitionSupported() && document.startViewTransition) {
-    document.startViewTransition(callback);
+  if (isViewTransitionSupported() && 'startViewTransition' in document) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+    (document as any).startViewTransition(callback);
   } else {
     callback();
   }

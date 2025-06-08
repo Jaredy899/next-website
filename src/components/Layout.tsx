@@ -37,9 +37,9 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
     e.preventDefault();
     
     // Use the enhanced view transition utility
-    navigateWithTransition(() => {
+    void navigateWithTransition(() => {
       startTransition(() => {
-        router.push(href);
+        void router.push(href);
       });
     });
   };

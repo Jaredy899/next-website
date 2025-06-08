@@ -5,11 +5,11 @@ import { getAllPosts, getPostBySlug } from '~/utils/blog';
 import type { BlogPost } from '~/utils/blog';
 import { MDXLayout } from '~/components/MDXLayout';
 import { serialize } from 'next-mdx-remote/serialize';
-import { MDXRemote } from 'next-mdx-remote';
+import { MDXRemote, type MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 interface BlogPostPageProps {
   post: BlogPost & {
-    mdxSource: any;
+    mdxSource: MDXRemoteSerializeResult;
   };
   posts: BlogPost[];
 }

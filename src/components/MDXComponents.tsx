@@ -28,7 +28,12 @@ const Code: React.FC<CodeProps> = ({ children, className, ...props }) => {
   // For code blocks, use our custom syntax highlighter
   return (
     <CustomSyntaxHighlighter className={className}>
-      {String(children).replace(/\n$/, '')}
+      {typeof children === 'string' 
+        ? children.replace(/\n$/, '') 
+        : children != null && typeof children === 'object' 
+          ? JSON.stringify(children).replace(/\n$/, '')
+          : String(children ?? '').replace(/\n$/, '')
+      }
     </CustomSyntaxHighlighter>
   );
 };

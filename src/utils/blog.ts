@@ -13,6 +13,13 @@ export interface BlogPost {
   draft?: boolean;
 }
 
+interface FrontMatter {
+  title: string;
+  description?: string;
+  pubDate: string | Date;
+  draft?: boolean;
+}
+
 export function getAllPosts(): BlogPost[] {
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames
@@ -30,17 +37,18 @@ export function getAllPosts(): BlogPost[] {
 
       // Use gray-matter to parse the post metadata section
       const { data, content } = matter(fileContents);
+      const frontMatter = data as FrontMatter;
 
       // Ensure pubDate is a string in ISO format
-      const pubDate = new Date(data.pubDate).toISOString();
+      const pubDate = new Date(frontMatter.pubDate).toISOString();
 
       return {
         slug,
-        title: data.title,
-        excerpt: data.description || '',
+        title: frontMatter.title,
+        excerpt: frontMatter.description ?? '',
         pubDate,
         content,
-        draft: data.draft || false,
+        draft: frontMatter.draft ?? false,
       };
     });
 
@@ -56,37 +64,39 @@ export function getPostBySlug(slug: string): BlogPost | null {
     const fullPath = path.join(postsDirectory, `${slug}.mdx`);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
+    const frontMatter = data as FrontMatter;
 
     // Ensure pubDate is a string in ISO format
-    const pubDate = new Date(data.pubDate).toISOString();
+    const pubDate = new Date(frontMatter.pubDate).toISOString();
 
     return {
       slug,
-      title: data.title,
-      excerpt: data.description || '',
+      title: frontMatter.title,
+      excerpt: frontMatter.description ?? '',
       pubDate,
       content,
-      draft: data.draft || false,
+      draft: frontMatter.draft ?? false,
     };
-  } catch (e) {
+  } catch {
     // If .mdx doesn't exist, try .md
     try {
       const fullPath = path.join(postsDirectory, `${slug}.md`);
       const fileContents = fs.readFileSync(fullPath, 'utf8');
       const { data, content } = matter(fileContents);
+      const frontMatter = data as FrontMatter;
 
       // Ensure pubDate is a string in ISO format
-      const pubDate = new Date(data.pubDate).toISOString();
+      const pubDate = new Date(frontMatter.pubDate).toISOString();
 
       return {
         slug,
-        title: data.title,
-        excerpt: data.description || '',
+        title: frontMatter.title,
+        excerpt: frontMatter.description ?? '',
         pubDate,
         content,
-        draft: data.draft || false,
+        draft: frontMatter.draft ?? false,
       };
-    } catch (e) {
+    } catch {
       return null;
     }
   }

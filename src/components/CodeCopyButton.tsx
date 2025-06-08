@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
 
 const CodeCopyButton: React.FC = () => {
@@ -24,7 +24,7 @@ const CodeCopyButton: React.FC = () => {
     });
   };
 
-  const setupCopyButtons = () => {
+  const setupCopyButtons = useCallback(() => {
     // Clean up existing buttons first
     cleanupCopyButtons();
     
@@ -70,30 +70,33 @@ const CodeCopyButton: React.FC = () => {
       btn.setAttribute("aria-label", "Copy code");
       btn.innerHTML = copySVG;
 
-      btn.addEventListener("click", async () => {
-        try {
-          // Get text from the code element or pre element
-          const textElement = preElement.querySelector('code') || preElement;
-          const text = textElement.textContent || "";
-          await navigator.clipboard.writeText(text);
+      btn.addEventListener("click", (event) => {
+        event.preventDefault();
+        void (async () => {
+          try {
+            // Get text from the code element or pre element
+            const textElement = preElement.querySelector('code') ?? preElement;
+            const text = textElement.textContent ?? "";
+            await navigator.clipboard.writeText(text);
 
-          const prev = btn.innerHTML;
-          btn.innerHTML = 
-            checkSVG + '<span class="btn-text">Copied!</span>';
-          btn.classList.add("copied");
+            const prev = btn.innerHTML;
+            btn.innerHTML = 
+              checkSVG + '<span class="btn-text">Copied!</span>';
+            btn.classList.add("copied");
 
-          setTimeout(() => {
-            btn.innerHTML = prev;
-            btn.classList.remove("copied");
-          }, 2000);
-        } catch (err) {
-          console.error("Failed to copy code:", err);
-        }
+            setTimeout(() => {
+              btn.innerHTML = prev;
+              btn.classList.remove("copied");
+            }, 2000);
+          } catch (err) {
+            console.error("Failed to copy code:", err);
+          }
+        })();
       });
 
       wrapper.appendChild(btn);
     });
-  };
+  }, []);
 
   useEffect(() => {
     // Initial setup
@@ -114,7 +117,7 @@ const CodeCopyButton: React.FC = () => {
       clearTimeout(timer2);
       cleanupCopyButtons();
     };
-  }, []);
+  }, [setupCopyButtons]);
 
   useEffect(() => {
     // Listen for route changes
@@ -135,7 +138,7 @@ const CodeCopyButton: React.FC = () => {
       router.events.off('routeChangeStart', handleRouteChangeStart);
       router.events.off('routeChangeComplete', handleRouteChangeComplete);
     };
-  }, [router.events]);
+  }, [router.events, setupCopyButtons]);
 
   return (
     <style jsx global>{`
