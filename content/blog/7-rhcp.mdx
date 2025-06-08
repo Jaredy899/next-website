@@ -2,7 +2,7 @@
 title: "Red Hot Chili Peppers"
 description: "Why the Chili Peppers are one of the greatest bands."
 pubDate: 2025-06-30
-draft: false
+draft: true
 ---
 
 ![Red Hot Chili Peppers](https://22yjaf7c2x.ufs.sh/f/avP9Ws4j0vyM6cnLCCrNHskZNSCxj8XdDhPKGEYART23Vt19)
