@@ -1,0 +1,89 @@
+/* MDX Content Styles */
+.mdx-content {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+}
+
+.mdx-content h1 {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 2rem 0 1rem;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.mdx-content h2 {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 2rem 0 1rem;
+  line-height: 1.3;
+}
+
+.mdx-content p {
+  margin: 1.5rem 0;
+  font-size: 1.1rem;
+}
+
+.mdx-content ul, .mdx-content ol {
+  margin: 1.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.mdx-content li {
+  margin: 0.5rem 0;
+}
+
+.mdx-content a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.mdx-content a:hover {
+  text-decoration: underline;
+}
+
+/* Code block wrapper for react-syntax-highlighter */
+.mdx-content pre {
+  margin: 1.5rem 0;
+  position: relative;
+}
+
+/* Inline code styling */
+.mdx-content code {
+  font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.9rem;
+}
+
+/* Ensure react-syntax-highlighter pre elements don't get extra styling */
+.mdx-content pre[class*="language-"] {
+  margin: 1.5rem 0;
+  position: relative;
+}
+
+.mdx-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.5rem auto;
+  border-radius: 8px;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .mdx-content {
+    font-size: 1rem;
+  }
+
+  .mdx-content h1 {
+    font-size: 1.6rem;
+  }
+
+  .mdx-content h2 {
+    font-size: 1.4rem;
+  }
+} 

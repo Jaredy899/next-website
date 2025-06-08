@@ -1,0 +1,70 @@
+/* View Transition Animations */
+
+/* Default page transition */
+::view-transition-old(root) {
+  animation: fade-out 300ms ease-out;
+}
+
+::view-transition-new(root) {
+  animation: fade-in 300ms ease-in;
+}
+
+/* JC Logo transition - smooth morphing between sizes */
+::view-transition-old(jc-logo) {
+  animation: logo-shrink 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::view-transition-new(jc-logo) {
+  animation: logo-grow 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Keyframe animations */
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes logo-shrink {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.15);
+    opacity: 0.8;
+  }
+}
+
+@keyframes logo-grow {
+  from {
+    transform: scale(6.67);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root),
+  ::view-transition-old(jc-logo),
+  ::view-transition-new(jc-logo) {
+    animation-duration: 0.1s;
+  }
+} 
