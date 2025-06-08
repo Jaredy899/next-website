@@ -34,7 +34,7 @@ const ThemeToggle: React.FC = () => {
           justify-content: center;
           padding: 0.5rem;
           background: none;
-          border: 1px solid var(--border);
+          border: none;
           border-radius: 0.5rem;
           color: var(--text);
           cursor: pointer;
