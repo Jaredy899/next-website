@@ -113,7 +113,7 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
         }
 
         .layout.sidebar-open {
-          padding-left: 300px;
+          padding-left: 400px;
         }
 
         .main-content {

@@ -31,45 +31,52 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
             <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
           </svg>
         </button>
-        <nav aria-labelledby="blog-posts-heading">
-          <h2 id="blog-posts-heading" aria-label="Blog Posts Navigation">Blog Posts</h2>
-          <div className="blog-archive" role="list" aria-labelledby="blog-posts-heading">
-            <ul aria-label="Blog posts list" role="list">
-              {posts.map((post, index) => {
-                const formattedDate = new Date(post.pubDate).toLocaleDateString('en-US');
-                return (
-                  <React.Fragment key={post.slug}>
-                    {index > 0 && <hr className="post-separator" />}
-                    <li role="listitem">
-                      <Link 
-                        href={`/blog/${post.slug}`}
-                        onClick={handleLinkClick}
-                        aria-label={`${post.title} - Published on ${formattedDate}`}
-                      >
-                        {post.title} <span className="post-date">({formattedDate})</span>
-                      </Link>
-                    </li>
-                  </React.Fragment>
-                );
-              })}
-            </ul>
-          </div>
-        </nav>
+        <div className="sidebar-header">
+          <h2>Blog Posts</h2>
+        </div>
+        
+        <div className="sidebar-content">
+          <ul className="posts-list">
+            {posts.map((post, index) => {
+              const formattedDate = new Date(post.pubDate).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              });
+              return (
+                <React.Fragment key={post.slug}>
+                  {index > 0 && <hr className="post-separator" />}
+                  <li>
+                    <Link 
+                      href={`/blog/${post.slug}`}
+                      onClick={handleLinkClick}
+                      className="post-link"
+                    >
+                      <div className="post-title">{post.title}</div>
+                      <div className="post-date">{formattedDate}</div>
+                      <div className="post-description">{post.excerpt}</div>
+                    </Link>
+                  </li>
+                </React.Fragment>
+              );
+            })}
+          </ul>
+        </div>
       </aside>
       <style jsx>{`
         .sidebar {
           position: fixed;
           top: 0;
-          left: calc(-1 * var(--sidebar-width, 300px));
-          width: var(--sidebar-width, 300px);
+          left: calc(-1 * var(--sidebar-width, 400px));
+          width: var(--sidebar-width, 400px);
           height: 100vh;
           background: var(--background);
+          border-right: 1px solid var(--text);
           box-shadow: none;
           transition: left 0.3s ease, visibility 0.3s ease;
           z-index: 1001;
-          padding: 2rem;
           visibility: hidden;
-          overflow: hidden;
+          overflow-y: auto;
           display: flex;
           flex-direction: column;
         }
@@ -77,7 +84,6 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
         .sidebar.active {
           left: 0;
           visibility: visible;
-          box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
         }
 
         .sidebar-overlay {
@@ -117,84 +123,82 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
           opacity: 0.7;
         }
 
-        .sidebar nav {
-          margin-top: 2rem;
-          flex: 1;
-          overflow: hidden;
+        .sidebar-header {
           display: flex;
-          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1.5rem;
+          border-bottom: 1px solid var(--text);
         }
 
-        .sidebar h2 {
+        .sidebar-header h2 {
           margin: 0;
-          font-size: 1.5rem;
           color: var(--text);
+          font-size: 1.5rem;
         }
 
-        .sidebar ul {
+        .sidebar-content {
+          padding: 1.5rem;
+          flex: 1;
+          overflow-y: auto;
+        }
+
+        .posts-list {
           list-style: none;
           padding: 0;
-          margin: 1rem 0;
+          margin: 0;
         }
 
-        .sidebar li {
-          margin: 0.5rem 0;
-          width: 100%;
+        .posts-list li {
+          margin-bottom: 1.5rem;
         }
 
-        .sidebar a {
-          color: var(--text);
+        .post-separator {
+          margin: 1.5rem 0;
+          border: none;
+          border-top: 1px solid rgba(var(--text-rgb), 0.2);
+        }
+
+        .post-link {
+          display: block;
           text-decoration: none;
-          font-size: 1.1rem;
-          transition: color 0.2s ease;
-          display: inline-block;
-          word-break: break-word;
-          line-height: 1.4;
-          width: 100%;
+          color: var(--text);
+          padding: 1rem;
+          border: 1px solid transparent;
+          border-radius: 8px;
+          transition: all 0.2s ease;
         }
 
-        .sidebar a:hover {
-          color: rgb(var(--accent));
+        .post-link:hover {
+          border-color: var(--text);
+          background-color: rgba(var(--text-rgb), 0.1);
+        }
+
+        .post-title {
+          font-weight: bold;
+          font-size: 1.1rem;
+          margin-bottom: 0.5rem;
+          color: var(--text);
         }
 
         .post-date {
           font-size: 0.9rem;
           opacity: 0.7;
-          margin-left: 0.25rem;
-          white-space: nowrap;
-          display: inline-block;
+          margin-bottom: 0.5rem;
+          color: var(--text);
         }
 
-        .post-separator {
-          margin: 1rem 0;
-          border: none;
-          border-top: 1px solid rgba(var(--text), 0.1);
-        }
-
-        .blog-archive {
-          margin-top: 1rem;
-          max-height: calc(100vh - 8rem);
-          overflow-y: auto;
-          -webkit-overflow-scrolling: touch;
+        .post-description {
+          font-size: 0.95rem;
+          opacity: 0.8;
+          line-height: 1.4;
+          color: var(--text);
         }
 
         @media (max-width: 768px) {
           .sidebar {
             width: 100%;
             left: -100%;
-          }
-          
-          .blog-archive {
-            max-height: calc(100vh - 6rem);
-          }
-
-          .sidebar a {
-            font-size: 1rem;
-            padding-right: 2rem;
-          }
-
-          .sidebar li {
-            padding-right: 1rem;
           }
         }
       `}</style>
