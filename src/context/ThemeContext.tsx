@@ -26,8 +26,17 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   useEffect(() => {
     // Update CSS variables when theme changes
-    document.documentElement.style.setProperty('--text', theme === 'dark' ? '#ffffff' : '#000000');
-    document.documentElement.style.setProperty('--background', theme === 'dark' ? '#000000' : '#ffffff');
+    if (theme === 'dark') {
+      document.documentElement.style.setProperty('--text', '#ffffff');
+      document.documentElement.style.setProperty('--background', '#000000');
+      document.documentElement.style.setProperty('--text-rgb', '255, 255, 255');
+      document.documentElement.style.setProperty('--background-rgb', '0, 0, 0');
+    } else {
+      document.documentElement.style.setProperty('--text', '#000000');
+      document.documentElement.style.setProperty('--background', '#ffffff');
+      document.documentElement.style.setProperty('--text-rgb', '0, 0, 0');
+      document.documentElement.style.setProperty('--background-rgb', '255, 255, 255');
+    }
     localStorage.setItem('theme', theme);
   }, [theme]);
 

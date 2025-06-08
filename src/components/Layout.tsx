@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { startTransition } from 'react';
 import { useTheme } from '~/context/ThemeContext';
 import Sidebar from './Sidebar';
 import type { BlogPost } from '~/utils/blog';
-import { enableViewTransitions } from '~/app/view-transitions';
+import { enableViewTransitions, navigateWithTransition, prepareReactViewTransitions } from '~/app/view-transitions';
 import Link from 'next/link';
 import JCLogo from './JCLogo';
 import ThemeToggle from './ThemeToggle';
@@ -25,6 +26,7 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
 
   useEffect(() => {
     enableViewTransitions();
+    prepareReactViewTransitions();
   }, []);
 
   const toggleSidebar = () => {
@@ -33,13 +35,13 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
 
   const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    if (document.startViewTransition) {
-      document.startViewTransition(() => {
+    
+    // Use the enhanced view transition utility
+    navigateWithTransition(() => {
+      startTransition(() => {
         router.push(href);
       });
-    } else {
-      router.push(href);
-    }
+    });
   };
 
   const layoutClasses = [
@@ -53,7 +55,7 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
     <div className={layoutClasses}>
       <header className="main-header">
         <div className="header-content">
-          <div className="nav-controls">
+          <div className="left-controls">
             <button 
               onClick={toggleSidebar}
               className="blog-button"
@@ -76,14 +78,18 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
               </svg>
             </button>
           </div>
+          
           {router.pathname.startsWith('/blog') && (
-            <Link href="/" onClick={(e) => handleNavigation(e, '/')}>
-              <div className="logo-container">
-                <JCLogo />
-              </div>
-            </Link>
+            <div className="center-logo">
+              <Link href="/" onClick={(e) => handleNavigation(e, '/')}>
+                <div className="logo-container">
+                  <JCLogo />
+                </div>
+              </Link>
+            </div>
           )}
-          <div className="nav-controls">
+          
+          <div className="right-controls">
             <ThemeToggle />
           </div>
         </div>
@@ -136,34 +142,53 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
         }
 
         .header-content {
-          max-width: 1200px;
-          margin: 0 auto;
           height: 100%;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 0.5rem 2rem;
+          padding: 0.5rem 1.5rem;
+          position: relative;
+        }
+
+        .left-controls {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          z-index: 10;
+        }
+
+        .right-controls {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          z-index: 10;
+        }
+
+        .center-logo {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 5;
         }
 
         .logo-container {
           color: var(--text);
-          view-transition-name: jc-logo-blog;
+          view-transition-name: jc-logo;
           width: 60px;
           height: 60px;
           display: block;
+          transition: transform 0.2s ease;
+        }
+
+        .logo-container:hover {
+          transform: scale(1.1);
         }
 
         .logo-container svg {
           width: 100%;
           height: 100%;
           color: inherit;
-        }
-
-        .nav-controls {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          width: 60px; /* Match logo width to maintain center alignment */
         }
 
         .blog-button {
@@ -190,10 +215,6 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
           .logo-container {
             width: 48px;
             height: 48px;
-          }
-
-          .nav-controls {
-            width: 48px; /* Match mobile logo width */
           }
 
           .layout.blog .main-content {

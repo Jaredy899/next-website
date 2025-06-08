@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import type { BlogPost } from '~/utils/blog';
 
 interface SidebarProps {
@@ -8,6 +9,11 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
+  const handleLinkClick = () => {
+    // Close sidebar when a link is clicked
+    onClose();
+  };
+
   return (
     <>
       <div 
@@ -35,12 +41,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
                   <React.Fragment key={post.slug}>
                     {index > 0 && <hr className="post-separator" />}
                     <li role="listitem">
-                      <a 
+                      <Link 
                         href={`/blog/${post.slug}`}
+                        onClick={handleLinkClick}
                         aria-label={`${post.title} - Published on ${formattedDate}`}
                       >
                         {post.title} <span className="post-date">({formattedDate})</span>
-                      </a>
+                      </Link>
                     </li>
                   </React.Fragment>
                 );

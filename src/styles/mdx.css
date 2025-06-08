@@ -50,17 +50,24 @@
   text-decoration: underline;
 }
 
+/* Remove old code block styles - now handled by CodeBlock component */
 .mdx-content pre {
-  background: #1a1a1a;
-  padding: 1rem;
-  border-radius: 8px;
-  overflow-x: auto;
-  margin: 1.5rem 0;
+  /* Styles will be handled by CodeBlock component */
 }
 
 .mdx-content code {
-  font-family: 'Fira Code', monospace;
+  /* Inline code styling only */
+  font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
   font-size: 0.9rem;
+  background: rgba(var(--text-rgb), 0.1);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+}
+
+/* Inline code in pre blocks should not have background */
+.mdx-content pre code {
+  background: none;
+  padding: 0;
 }
 
 .mdx-content .hljs {
