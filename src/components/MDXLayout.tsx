@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { formatDate } from '../utils/date';
+import CodeCopyButton from './CodeCopyButton';
 import '../styles/mdx.css';
 import '../styles/blog.css';
 
@@ -19,6 +20,7 @@ export function MDXLayout({ children, metadata }: MDXLayoutProps) {
       <div className="mdx-content">
         {children}
       </div>
+      <CodeCopyButton />
     </article>
   );
 } 
