@@ -28,7 +28,7 @@ const CodeCopyButton: React.FC = () => {
     // Clean up existing buttons first
     cleanupCopyButtons();
     
-    // Try multiple selectors to find code blocks
+    // Find react-syntax-highlighter pre elements
     const codeBlocks = document.querySelectorAll("pre:not(.code-block-wrapper pre)");
 
     codeBlocks.forEach((preElement) => {
@@ -104,7 +104,7 @@ const CodeCopyButton: React.FC = () => {
       setupCopyButtons();
     }, 100);
     
-    // Additional delay for MDX content
+    // Additional delay for react-syntax-highlighter content
     const timer2 = setTimeout(() => {
       setupCopyButtons();
     }, 1000);
@@ -155,11 +155,8 @@ const CodeCopyButton: React.FC = () => {
         top: 0.5rem;
         right: 0.5rem;
         padding: 0.5rem;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 0.25rem;
         cursor: pointer;
-        color: #e2e8f0;
         transition: all 0.2s ease;
         line-height: 1;
         display: flex;
@@ -172,6 +169,11 @@ const CodeCopyButton: React.FC = () => {
         min-width: 1.75rem;
         min-height: 1.75rem;
         font-size: 0.875rem;
+        
+        /* Always use light styling for dark code background */
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #e2e8f0;
       }
 
       .copy-code-button svg {
@@ -188,10 +190,10 @@ const CodeCopyButton: React.FC = () => {
       }
 
       .copy-code-button:hover {
+        transform: translateY(-1px);
         background: rgba(255, 255, 255, 0.2);
         border-color: rgba(255, 255, 255, 0.3);
         color: #ffffff;
-        transform: translateY(-1px);
       }
 
       .copy-code-button.copied {
@@ -205,40 +207,14 @@ const CodeCopyButton: React.FC = () => {
         box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
       }
 
-      /* Clean code block styling */
+      /* Ensure react-syntax-highlighter works properly with copy button */
       .code-block-wrapper pre {
-        margin: 0 !important;
-        padding: 1rem !important;
-        padding-right: 6rem !important;
-        background: var(--code-bg) !important;
-        border-radius: 8px !important;
-        overflow-x: auto !important;
-        border: 1px solid var(--border) !important;
-        box-shadow: none !important;
-        display: block !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-        white-space: pre !important;
-        word-wrap: normal !important;
-        font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace !important;
-        position: relative !important;
-        scrollbar-width: thin !important;
+        margin: 0;
+        position: relative;
       }
 
       .code-block-wrapper code {
-        font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace !important;
-        font-size: 0.875rem !important;
-        line-height: 1.5 !important;
-        color: var(--text) !important;
-        background: none !important;
-        padding: 0 !important;
-        border-radius: 0 !important;
-        border: none !important;
-        display: block !important;
-        white-space: pre !important;
-        word-break: normal !important;
-        overflow-wrap: normal !important;
-        padding-right: 0 !important;
+        font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
       }
     `}</style>
   );

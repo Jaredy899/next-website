@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react';
+import { MDXProvider } from '@mdx-js/react';
 import { formatDate } from '../utils/date';
 import CodeCopyButton from './CodeCopyButton';
+import { MDXComponents } from './MDXComponents';
 import '../styles/mdx.css';
 import '../styles/blog.css';
 
@@ -18,7 +20,9 @@ export function MDXLayout({ children, metadata }: MDXLayoutProps) {
       <h1>{metadata.title}</h1>
       <div className="date">{formatDate(metadata.pubDate)}</div>
       <div className="mdx-content">
-        {children}
+        <MDXProvider components={MDXComponents}>
+          {children}
+        </MDXProvider>
       </div>
       <CodeCopyButton />
     </article>
