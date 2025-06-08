@@ -1,5 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { startTransition } from 'react';
 import type { BlogPost } from '~/utils/blog';
 
 interface SidebarProps {
@@ -9,9 +11,17 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
-  const handleLinkClick = () => {
+  const router = useRouter();
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
     // Close sidebar when a link is clicked
     onClose();
+    
+    // Use React's startTransition for navigation
+    startTransition(() => {
+      void router.push(href);
+    });
   };
 
   return (
@@ -49,7 +59,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
                   <li>
                     <Link 
                       href={`/blog/${post.slug}`}
-                      onClick={handleLinkClick}
+                      onClick={(e) => handleLinkClick(e, `/blog/${post.slug}`)}
                       className="post-link"
                     >
                       <div className="post-title">{post.title}</div>

@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { startTransition } from 'react';
+import { startTransition, unstable_ViewTransition as ViewTransition } from 'react';
 import { useTheme } from '~/context/ThemeContext';
 import Sidebar from './Sidebar';
 import type { BlogPost } from '~/utils/blog';
-import { enableViewTransitions, navigateWithTransition, prepareReactViewTransitions } from '~/app/view-transitions';
 import Link from 'next/link';
 import JCLogo from './JCLogo';
 import ThemeToggle from './ThemeToggle';
@@ -24,11 +23,6 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
     setMounted(true);
   }, []);
 
-  useEffect(() => {
-    enableViewTransitions();
-    prepareReactViewTransitions();
-  }, []);
-
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
@@ -36,11 +30,9 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
   const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     
-    // Use the enhanced view transition utility
-    void navigateWithTransition(() => {
-      startTransition(() => {
-        void router.push(href);
-      });
+    // Use React's startTransition for navigation
+    startTransition(() => {
+      void router.push(href);
     });
   };
 
@@ -50,6 +42,9 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
     isSidebarOpen ? 'sidebar-open' : '',
     router.pathname.startsWith('/blog') ? 'blog' : ''
   ].filter(Boolean).join(' ');
+
+  // Determine if we should show header logo
+  const showHeaderLogo = router.pathname.startsWith('/blog');
 
   return (
     <div className={layoutClasses}>
@@ -79,12 +74,14 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
             </button>
           </div>
           
-          {router.pathname.startsWith('/blog') && (
+          {showHeaderLogo && (
             <div className="center-logo">
               <Link href="/" onClick={(e) => handleNavigation(e, '/')}>
-                <div className="logo-container">
-                  <JCLogo />
-                </div>
+                <ViewTransition name="jc-logo">
+                  <div className="logo-container">
+                    <JCLogo />
+                  </div>
+                </ViewTransition>
               </Link>
             </div>
           )}
@@ -99,9 +96,11 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
         onClose={() => setIsSidebarOpen(false)}
         posts={posts}
       />
-      <main className="main-content">
-        {children}
-      </main>
+      <ViewTransition name="main-content">
+        <main className="main-content">
+          {children}
+        </main>
+      </ViewTransition>
       <style jsx>{`
         .layout {
           min-height: 100vh;
@@ -173,7 +172,6 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
 
         .logo-container {
           color: var(--text);
-          view-transition-name: jc-logo;
           width: 60px;
           height: 60px;
           display: block;

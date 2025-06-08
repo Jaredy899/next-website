@@ -1,6 +1,6 @@
-/* View Transition Animations */
+/* View Transition Animations for React's <ViewTransition> component */
 
-/* Default page transition */
+/* Default smooth cross-fade for all transitions */
 ::view-transition-old(root) {
   animation: fade-out 300ms ease-out;
 }
@@ -9,20 +9,26 @@
   animation: fade-in 300ms ease-in;
 }
 
-/* JC Logo transition - smooth morphing between sizes */
+/* JC Logo shared element transition */
 ::view-transition-old(jc-logo) {
-  animation: logo-shrink 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  animation: morph-out 400ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 ::view-transition-new(jc-logo) {
-  animation: logo-grow 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  animation: morph-in 400ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Keyframe animations */
+/* Main content transitions */
+::view-transition-old(main-content) {
+  animation: fade-out 250ms ease-out;
+}
+
+::view-transition-new(main-content) {
+  animation: fade-in 250ms ease-in 50ms both;
+}
+
+/* Simple keyframe animations */
 @keyframes fade-out {
-  from {
-    opacity: 1;
-  }
   to {
     opacity: 0;
   }
@@ -32,39 +38,24 @@
   from {
     opacity: 0;
   }
+}
+
+@keyframes morph-out {
   to {
-    opacity: 1;
+    opacity: 0;
   }
 }
 
-@keyframes logo-shrink {
+@keyframes morph-in {
   from {
-    transform: scale(1);
-    opacity: 1;
-  }
-  to {
-    transform: scale(0.15);
-    opacity: 0.8;
-  }
-}
-
-@keyframes logo-grow {
-  from {
-    transform: scale(6.67);
-    opacity: 0.8;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
+    opacity: 0;
   }
 }
 
 /* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
-  ::view-transition-old(root),
-  ::view-transition-new(root),
-  ::view-transition-old(jc-logo),
-  ::view-transition-new(jc-logo) {
-    animation-duration: 0.1s;
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0.1s !important;
   }
 } 

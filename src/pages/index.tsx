@@ -1,6 +1,7 @@
 import type { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
+import { unstable_ViewTransition as ViewTransition } from 'react';
 import Layout from '~/components/Layout';
 import JCLogo from '~/components/JCLogo';
 import SocialLinks from '~/components/SocialLinks';
@@ -22,9 +23,11 @@ export default function Home({ posts }: HomeProps) {
 
       <div className="content">
         <Link href="/" className="logo-link">
-          <div className="logo-container">
-            <JCLogo />
-          </div>
+          <ViewTransition name="jc-logo">
+            <div className="logo-container">
+              <JCLogo />
+            </div>
+          </ViewTransition>
         </Link>
         <a
           href="https://home.jaredcervantes.com"
@@ -69,7 +72,6 @@ export default function Home({ posts }: HomeProps) {
         .logo-container {
           width: 400px;
           height: 400px;
-          view-transition-name: jc-logo;
           color: var(--text);
         }
 
