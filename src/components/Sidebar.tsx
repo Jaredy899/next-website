@@ -13,6 +13,28 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
   const router = useRouter();
 
+  // Sort posts by date (newest first)
+  const sortedPosts = [...posts].sort((a, b) => 
+    new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime()
+  );
+
+  // Format date to be more readable with UTC handling
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    // Ensure we're working with UTC dates
+    const utcDate = new Date(Date.UTC(
+      date.getUTCFullYear(),
+      date.getUTCMonth(),
+      date.getUTCDate()
+    ));
+    return utcDate.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      timeZone: 'UTC'
+    });
+  };
+
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     // Close sidebar when a link is clicked
@@ -27,86 +49,99 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
   return (
     <>
       <div 
+        id="sidebar-overlay"
         className={`sidebar-overlay ${isOpen ? 'active' : ''}`} 
         onClick={onClose} 
         aria-hidden="true"
       />
       <aside 
         id="sidebar" 
-        className={`sidebar ${isOpen ? 'active' : ''}`} 
+        className={`blog-sidebar ${isOpen ? 'open' : ''}`} 
         aria-label="Blog navigation"
       >
-        <button className="close-button" onClick={onClose} aria-label="Close sidebar">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-          </svg>
-        </button>
         <div className="sidebar-header">
           <h2>Blog Posts</h2>
+          <button
+            className="close-btn"
+            id="sidebar-close-btn"
+            onClick={onClose}
+            aria-label="Close sidebar"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
         </div>
-        
+
         <div className="sidebar-content">
-          <ul className="posts-list">
-            {posts.map((post, index) => {
-              const formattedDate = new Date(post.pubDate).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-              });
-              return (
-                <React.Fragment key={post.slug}>
-                  {index > 0 && <hr className="post-separator" />}
-                  <li>
+          {sortedPosts.length === 0 ? (
+            <div className="no-posts">No blog posts yet</div>
+          ) : (
+            <ul className="posts-list">
+              {sortedPosts.map((post) => {
+                const formattedDate = formatDate(post.pubDate);
+                return (
+                  <li key={post.slug}>
                     <Link 
                       href={`/blog/${post.slug}`}
                       onClick={(e) => handleLinkClick(e, `/blog/${post.slug}`)}
                       className="post-link"
+                      aria-label={`${post.title} - Published on ${formattedDate}`}
+                      style={{
+                        display: 'block',
+                        textDecoration: 'none',
+                        color: 'white',
+                        padding: '1rem',
+                        border: '1px solid transparent',
+                        borderRadius: '8px',
+                        transition: 'all 0.2s ease',
+                        boxSizing: 'border-box'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.border = '1px solid white';
+                        e.currentTarget.style.backgroundColor = 'rgba(128, 128, 128, 0.1)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.border = '1px solid transparent';
+                        e.currentTarget.style.backgroundColor = 'transparent';
+                      }}
                     >
                       <div className="post-title">{post.title}</div>
                       <div className="post-date">{formattedDate}</div>
-                      <div className="post-description">{post.excerpt}</div>
+                      {post.excerpt && (
+                        <div className="post-description">{post.excerpt}</div>
+                      )}
                     </Link>
                   </li>
-                </React.Fragment>
-              );
-            })}
-          </ul>
+                );
+              })}
+            </ul>
+          )}
         </div>
       </aside>
       <style jsx>{`
-        .sidebar {
-          position: fixed;
-          top: 0;
-          left: calc(-1 * var(--sidebar-width, 400px));
-          width: var(--sidebar-width, 400px);
-          height: 100vh;
-          background: var(--background);
-          border-right: 1px solid var(--text);
-          box-shadow: none;
-          transition: left 0.3s ease, visibility 0.3s ease;
-          z-index: 1001;
-          visibility: hidden;
-          overflow-y: auto;
-          display: flex;
-          flex-direction: column;
-        }
-
-        .sidebar.active {
-          left: 0;
-          visibility: visible;
-        }
-
         .sidebar-overlay {
           position: fixed;
           top: 0;
           left: 0;
           width: 100%;
           height: 100%;
-          background: rgba(0, 0, 0, 0.5);
+          background-color: rgba(0, 0, 0, 0.5);
+          z-index: 1000;
           opacity: 0;
           visibility: hidden;
           transition: opacity 0.3s ease, visibility 0.3s ease;
-          z-index: 1000;
         }
 
         .sidebar-overlay.active {
@@ -114,23 +149,22 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
           visibility: visible;
         }
 
-        .close-button {
-          position: absolute;
-          top: 1rem;
-          right: 1rem;
-          background: none;
-          border: none;
-          color: var(--text);
-          cursor: pointer;
-          padding: 0.5rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: opacity 0.2s ease;
+        .blog-sidebar {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 400px;
+          height: 100vh;
+          background-color: var(--background);
+          border-right: 1px solid var(--text);
+          transform: translateX(-100%);
+          transition: transform 0.3s ease;
+          overflow-y: auto;
+          z-index: 1001;
         }
 
-        .close-button:hover {
-          opacity: 0.7;
+        .blog-sidebar.open {
+          transform: translateX(0);
         }
 
         .sidebar-header {
@@ -143,14 +177,32 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
 
         .sidebar-header h2 {
           margin: 0;
-          color: var(--text);
+          color: white;
           font-size: 1.5rem;
+        }
+
+        .close-btn {
+          background: none;
+          border: none;
+          color: white;
+          cursor: pointer;
+          padding: 0.5rem;
+          transition: opacity 0.2s ease;
+        }
+
+        .close-btn:hover {
+          opacity: 0.7;
         }
 
         .sidebar-content {
           padding: 1.5rem;
-          flex: 1;
-          overflow-y: auto;
+        }
+
+        .no-posts {
+          text-align: center;
+          color: white;
+          padding: 2rem;
+          opacity: 0.7;
         }
 
         .posts-list {
@@ -163,52 +215,51 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
           margin-bottom: 1.5rem;
         }
 
-        .post-separator {
-          margin: 1.5rem 0;
-          border: none;
-          border-top: 1px solid rgba(var(--text-rgb), 0.2);
-        }
-
-        .post-link {
+        .posts-list li .post-link {
           display: block;
           text-decoration: none;
-          color: var(--text);
+          color: white;
           padding: 1rem;
           border: 1px solid transparent;
           border-radius: 8px;
           transition: all 0.2s ease;
+          box-sizing: border-box;
         }
 
-        .post-link:hover {
-          border-color: var(--text);
-          background-color: rgba(var(--text-rgb), 0.1);
+        .posts-list li .post-link:hover {
+          border: 1px solid white !important;
+          background-color: rgba(128, 128, 128, 0.1) !important;
+        }
+
+        .posts-list li:hover .post-link {
+          border: 1px solid white !important;
+          background-color: rgba(128, 128, 128, 0.1) !important;
         }
 
         .post-title {
           font-weight: bold;
           font-size: 1.1rem;
           margin-bottom: 0.5rem;
-          color: var(--text);
+          color: white;
         }
 
         .post-date {
           font-size: 0.9rem;
           opacity: 0.7;
           margin-bottom: 0.5rem;
-          color: var(--text);
+          color: white;
         }
 
         .post-description {
           font-size: 0.95rem;
           opacity: 0.8;
           line-height: 1.4;
-          color: var(--text);
+          color: white;
         }
 
         @media (max-width: 768px) {
-          .sidebar {
+          .blog-sidebar {
             width: 100%;
-            left: -100%;
           }
         }
       `}</style>
