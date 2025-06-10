@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { startTransition } from 'react';
 import type { BlogPost } from '~/utils/blog';
+import { formatDate } from '~/utils/date';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -18,22 +19,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
     new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime()
   );
 
-  // Format date to be more readable with UTC handling
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    // Ensure we're working with UTC dates
-    const utcDate = new Date(Date.UTC(
-      date.getUTCFullYear(),
-      date.getUTCMonth(),
-      date.getUTCDate()
-    ));
-    return utcDate.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      timeZone: 'UTC'
-    });
-  };
+
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
