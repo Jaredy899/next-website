@@ -6,7 +6,7 @@ draft: true
 ---
 # Jared's Linux Installs: Automating Your Linux Setup
 
-![Linux](https://utfs.io/f/avP9Ws4j0vyMiDeH2YMXScWJArkKqwvUa7es1g0IpBoFG4mj)
+![Linux](https://qmpdliftraf4pov3.public.blob.vercel-storage.com/tux-b91fJLvI1Otb3xyK5KNNjYobaitzfT.webp)
 
 Are you tired of manually setting up a new Linux system every time? Do you wish for a quicker, more consistent way to get your environment just right? Look no further than **[Jared's Linux Installs](https://github.com/Jaredy899/linux.git)**, a fantastic collection of shell scripts designed for automated Linux setup and configuration.
 
@@ -46,7 +46,7 @@ For Arch Linux users, this toolkit is even smarter! If you run the script from a
 
 Once you run the main script, you'll be presented with a clear menu of options:
 
-![Linux](https://22yjaf7c2x.ufs.sh/f/avP9Ws4j0vyMOIaMRl23vacZSkjMnmwdb8sVBF73GATHRUyX)
+![Linux](https://qmpdliftraf4pov3.public.blob.vercel-storage.com/linux-xLV0UbU0VyzQ6fq5pGtQje6HaV50g0.webp)
 
 1. **Run Post Install Script** - Install and configure essential utilities.
 2. **Run Linux Utility** - Launch the [Jared Linux Utility](https://github.com/Jaredy899/jaredlinutil) for system tweaks.

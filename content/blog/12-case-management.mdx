@@ -20,7 +20,7 @@ My biggest headache was always the calendar. When was the next treatment plan du
 
 ### Enter Convex Chef: My Backend Dream Weaver
 
-![Chef](https://22yjaf7c2x.ufs.sh/f/avP9Ws4j0vyMKZbxPGIzmRN1At7Jq2kOPsiraCoFnV89Xc6y)
+![Chef](https://qmpdliftraf4pov3.public.blob.vercel-storage.com/Chef-ehjV6foFVrIZfXAW6jS4PIuFHPq0nD.webp)
 
 When I discovered Convex Chef, I was intrigued. Advertised as an AI agent that builds full-stack web apps with a focus on backend logic, it promised to handle the "three Cs" that often trip up LLMs: concurrency, consistency, and caching. Convex is a hosted backend platform with a built-in reactive database, allowing developers to write database schemas and server functions in TypeScript. This real-time database means that any updates are instantly reflected in the front end, which was a huge selling point for me.
 
