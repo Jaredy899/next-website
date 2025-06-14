@@ -22,7 +22,7 @@ export default function BlogPostPage({ post, posts }: BlogPostPageProps) {
         <meta name="description" content={post.excerpt} />
       </Head>
 
-      <MDXLayout metadata={post}>
+      <MDXLayout metadata={{ title: post.title, pubDate: post.pubDate }}>
         <MDXRemote {...post.mdxSource} />
       </MDXLayout>
     </Layout>
