@@ -1,7 +1,7 @@
 ---
 title: "My Linux Configuration"
 description: "How I configure different linux Distributions"
-pubDate: 2025-07-27
+pubDate: 2025-08-17
 draft: true
 ---
 
@@ -82,4 +82,4 @@ For more detailed information about each component and how it works, dive into t
 
 ---
 
-Jared's Linux Installs provides a robust and convenient way to automate common Linux setup tasks, while also offering a window into comprehensive system configuration, including Nix. Give it a try the next time you're setting up a new system, and experience the power of efficient Linux automation and configuration management! 
+Jared's Linux Installs provides a robust and convenient way to automate common Linux setup tasks, while also offering a window into comprehensive system configuration, including Nix. Give it a try the next time you're setting up a new system, and experience the power of efficient Linux automation and configuration management!

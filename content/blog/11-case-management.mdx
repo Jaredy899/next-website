@@ -1,8 +1,8 @@
 ---
 title: "The Importance of Case Management in First Episode Psychosis Recovery"
 description: "How case management can help individuals with first episode psychosis."
-pubDate: 2025-08-17
-draft: true
+pubDate: 2025-07-27
+draft: false
 ---
 
 # Case Management: A Cornerstone of First Episode Psychosis Recovery
@@ -34,4 +34,4 @@ For me, being an FEP case manager is incredibly rewarding. It involves building 
 * **Problem-Solving and Support:** Helping individuals navigate day-to-day challenges, develop coping strategies, and address barriers to their recovery.
 * **Education and Psychoeducation:** Providing information about psychosis, treatment options, and coping skills to both individuals and their families.
 
-In essence, as an FEP case manager, I am a consistent presence, a source of guidance, and a steadfast advocate. I strive to create an environment where individuals feel understood, supported, and empowered to reclaim their lives and build a fulfilling future. The importance of case management for mental health, particularly in first episode psychosis, cannot be overstated – it is truly a cornerstone of recovery. 
+In essence, as an FEP case manager, I am a consistent presence, a source of guidance, and a steadfast advocate. I strive to create an environment where individuals feel understood, supported, and empowered to reclaim their lives and build a fulfilling future. The importance of case management for mental health, particularly in first episode psychosis, cannot be overstated – it is truly a cornerstone of recovery.

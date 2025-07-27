@@ -26,8 +26,8 @@
     "he": "^1.2.0",
     "highlight.js": "^11.11.1",
     "marked": "^15.0.12",
-    "marked-highlight": "^2.2.1",
-    "next": "^15.3.3",
+    "marked-highlight": "^2.2.2",
+    "next": "^15.4.4",
     "next-mdx-remote": "^5.0.0",
     "react": "0.0.0-experimental-280ff6fe-20250606",
     "react-dom": "0.0.0-experimental-280ff6fe-20250606",
@@ -37,25 +37,25 @@
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.1",
     "remark-html": "^16.0.1",
-    "shiki": "^3.6.0",
-    "zod": "^3.25.56"
+    "shiki": "^3.8.1",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
-    "@tailwindcss/postcss": "^4.1.8",
+    "@tailwindcss/postcss": "^4.1.11",
     "@types/he": "^1.2.3",
-    "@types/node": "^20.19.0",
-    "@types/react": "^19.1.6",
+    "@types/node": "^20.19.9",
+    "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "autoprefixer": "^10.4.21",
-    "eslint": "^9.28.0",
-    "eslint-config-next": "^15.3.3",
-    "postcss": "^8.5.4",
-    "prettier": "^3.5.3",
-    "prettier-plugin-tailwindcss": "^0.6.12",
-    "tailwindcss": "^4.1.8",
+    "eslint": "^9.32.0",
+    "eslint-config-next": "^15.4.4",
+    "postcss": "^8.5.6",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "tailwindcss": "^4.1.11",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.33.1"
+    "typescript-eslint": "^8.38.0"
   },
   "ct3aMetadata": {
     "initVersion": "7.39.3"
