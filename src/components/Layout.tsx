@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { startTransition, unstable_ViewTransition as ViewTransition } from 'react';
+import { startTransition } from 'react';
 import { useTheme } from '~/context/ThemeContext';
 import Sidebar from './Sidebar';
 import type { BlogPost } from '~/utils/blog';
 import Link from 'next/link';
 import JCLogo from './JCLogo';
 import ThemeToggle from './ThemeToggle';
+
+// ViewTransition wrapper component (fallback when React's unstable_ViewTransition is not available)
+interface ViewTransitionProps {
+  name: string;
+  children: React.ReactNode;
+}
+
+const ViewTransition: React.FC<ViewTransitionProps> = ({ children }) => {
+  return <>{children}</>;
+};
 
 interface LayoutProps {
   children: React.ReactNode;
