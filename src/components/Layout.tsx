@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useTheme } from '~/context/ThemeContext';
 import Sidebar from './Sidebar';
-import type { BlogPost } from '~/utils/blog';
+import type { BlogPostSummary } from '~/utils/blog';
 import Link from 'next/link';
 import JCLogo from './JCLogo';
 import ThemeToggle from './ThemeToggle';
@@ -10,7 +10,7 @@ import { useViewTransitionRouter } from '~/utils/viewTransition';
 
 interface LayoutProps {
   children: React.ReactNode;
-  posts: BlogPost[];
+  posts: BlogPostSummary[];
 }
 
 const Layout: React.FC<LayoutProps> = ({ children, posts }) => {

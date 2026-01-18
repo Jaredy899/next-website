@@ -1,17 +1,17 @@
 import type { GetStaticProps, GetStaticPaths } from 'next';
 import Head from 'next/head';
 import Layout from '~/components/Layout';
-import { getAllPosts, getPostBySlug } from '~/utils/blog';
-import type { BlogPost } from '~/utils/blog';
+import { getAllPosts, getPostBySlug, getAllPostSummaries } from '~/utils/blog';
+import type { BlogPost, BlogPostSummary } from '~/utils/blog';
 import { MDXLayout } from '~/components/MDXLayout';
 import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote, type MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 interface BlogPostPageProps {
-  post: BlogPost & {
+  post: BlogPostSummary & {
     mdxSource: MDXRemoteSerializeResult;
   };
-  posts: BlogPost[];
+  posts: BlogPostSummary[];
 }
 
 export default function BlogPostPage({ post, posts }: BlogPostPageProps) {
@@ -47,7 +47,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     ? params.slug.join('/') 
     : params!.slug!;
   const post = getPostBySlug(slug);
-  const posts = getAllPosts();
+  // Use summaries (without content) for sidebar to reduce page data size
+  const posts = getAllPostSummaries();
 
   if (!post) {
     return {
@@ -61,7 +62,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       post: {
-        ...post,
+        // Only pass necessary fields, not the raw content
+        slug: post.slug,
+        title: post.title,
+        excerpt: post.excerpt,
+        pubDate: post.pubDate,
         mdxSource,
       },
       posts,

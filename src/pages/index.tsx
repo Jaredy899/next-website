@@ -3,11 +3,11 @@ import Head from 'next/head';
 import Layout from '~/components/Layout';
 import JCLogo from '~/components/JCLogo';
 import SocialLinks from '~/components/SocialLinks';
-import { getAllPosts } from '~/utils/blog';
-import type { BlogPost } from '~/utils/blog';
+import { getAllPostSummaries } from '~/utils/blog';
+import type { BlogPostSummary } from '~/utils/blog';
 
 interface HomeProps {
-  posts: BlogPost[];
+  posts: BlogPostSummary[];
 }
 
 export default function Home({ posts }: HomeProps) {
@@ -110,7 +110,7 @@ export default function Home({ posts }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = getAllPosts();
+  const posts = getAllPostSummaries();
   return {
     props: {
       posts,

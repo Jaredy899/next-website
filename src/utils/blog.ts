@@ -13,6 +13,14 @@ export interface BlogPost {
   draft?: boolean;
 }
 
+// Lighter version without content for sidebar/listings
+export interface BlogPostSummary {
+  slug: string;
+  title: string;
+  excerpt: string;
+  pubDate: string;
+}
+
 interface FrontMatter {
   title: string;
   description?: string;
@@ -75,6 +83,19 @@ export function getAllPosts(): BlogPost[] {
   return allPostsData
     .filter((post) => !post.draft)
     .sort((a, b) => (a.pubDate < b.pubDate ? 1 : -1));
+}
+
+/**
+ * Get all posts without content (for sidebar/listings)
+ * This reduces page data size significantly
+ */
+export function getAllPostSummaries(): BlogPostSummary[] {
+  return getAllPosts().map(({ slug, title, excerpt, pubDate }) => ({
+    slug,
+    title,
+    excerpt,
+    pubDate,
+  }));
 }
 
 export function getPostBySlug(slug: string): BlogPost | null {

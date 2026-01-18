@@ -1,13 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
-import type { BlogPost } from '~/utils/blog';
+import type { BlogPostSummary } from '~/utils/blog';
 import { formatDate } from '~/utils/date';
 import { useViewTransitionRouter } from '~/utils/viewTransition';
 
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
-  posts: BlogPost[];
+  posts: BlogPostSummary[];
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
@@ -28,17 +28,17 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
   };
 
   return (
-    <>
-      <div 
-        id="sidebar-overlay"
-        className={`sidebar-overlay ${isOpen ? 'active' : ''}`} 
-        onClick={onClose} 
-        aria-hidden="true"
-      />
+    <div 
+      id="sidebar-overlay"
+      className={`sidebar-overlay ${isOpen ? 'active' : ''}`} 
+      onClick={onClose}
+      aria-hidden="true"
+    >
       <aside 
         id="sidebar" 
         className={`blog-sidebar ${isOpen ? 'open' : ''}`} 
         aria-label="Blog navigation"
+        onClick={(e) => e.stopPropagation()}
       >
         <div className="sidebar-header">
           <h2>Blog Posts</h2>
@@ -79,24 +79,6 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
                       onClick={(e) => handleLinkClick(e, `/blog/${post.slug}`)}
                       className="post-link"
                       aria-label={`${post.title} - Published on ${formattedDate}`}
-                      style={{
-                        display: 'block',
-                        textDecoration: 'none',
-                        color: 'white',
-                        padding: '1rem',
-                        border: '1px solid transparent',
-                        borderRadius: '8px',
-                        transition: 'all 0.2s ease',
-                        boxSizing: 'border-box'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.border = '1px solid white';
-                        e.currentTarget.style.backgroundColor = 'rgba(128, 128, 128, 0.1)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.border = '1px solid transparent';
-                        e.currentTarget.style.backgroundColor = 'transparent';
-                      }}
                     >
                       <div className="post-title">{post.title}</div>
                       <div className="post-date">{formattedDate}</div>
@@ -153,22 +135,26 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
           justify-content: space-between;
           align-items: center;
           padding: 1.5rem;
+          padding-left: 4rem;
           border-bottom: 1px solid var(--text);
         }
 
         .sidebar-header h2 {
           margin: 0;
-          color: white;
+          color: var(--text);
           font-size: 1.5rem;
         }
 
         .close-btn {
           background: none;
           border: none;
-          color: white;
+          color: var(--text);
           cursor: pointer;
           padding: 0.5rem;
           transition: opacity 0.2s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         .close-btn:hover {
@@ -181,7 +167,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
 
         .no-posts {
           text-align: center;
-          color: white;
+          color: var(--text);
           padding: 2rem;
           opacity: 0.7;
         }
@@ -196,56 +182,58 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
           margin-bottom: 1.5rem;
         }
 
-        .posts-list li .post-link {
-          display: block;
-          text-decoration: none;
-          color: white;
-          padding: 1rem;
-          border: 1px solid transparent;
-          border-radius: 8px;
-          transition: all 0.2s ease;
-          box-sizing: border-box;
-        }
-
-        .posts-list li .post-link:hover {
-          border: 1px solid white !important;
-          background-color: rgba(128, 128, 128, 0.1) !important;
-        }
-
-        .posts-list li:hover .post-link {
-          border: 1px solid white !important;
-          background-color: rgba(128, 128, 128, 0.1) !important;
-        }
-
         .post-title {
           font-weight: bold;
           font-size: 1.1rem;
           margin-bottom: 0.5rem;
-          color: white;
+          line-height: 1.3;
         }
 
         .post-date {
           font-size: 0.9rem;
           opacity: 0.7;
           margin-bottom: 0.5rem;
-          color: white;
         }
 
         .post-description {
           font-size: 0.95rem;
           opacity: 0.8;
           line-height: 1.4;
-          color: white;
         }
 
         @media (max-width: 768px) {
           .blog-sidebar {
             width: 100%;
           }
+          
+          .sidebar-header {
+            padding-left: 3.5rem;
+          }
         }
       `}</style>
-    </>
+      <style jsx global>{`
+        .post-link {
+          display: block;
+          text-decoration: none;
+          color: var(--text);
+          padding: 1rem;
+          border: 1px solid transparent;
+          border-radius: 8px;
+          transition: all 0.2s ease;
+          background: none;
+          cursor: pointer;
+          width: 100%;
+          text-align: left;
+          box-sizing: border-box;
+        }
+
+        .post-link:hover {
+          border-color: var(--text);
+          background-color: rgba(128, 128, 128, 0.1);
+        }
+      `}</style>
+    </div>
   );
 };
 
-export default Sidebar; 
+export default Sidebar;

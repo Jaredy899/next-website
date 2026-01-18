@@ -2,7 +2,7 @@ import { type AppType } from "next/app";
 import Head from "next/head";
 import { Geist } from "next/font/google";
 import { ThemeProvider } from "~/context/ThemeContext";
-import type { BlogPost } from "~/utils/blog";
+import type { BlogPostSummary } from "~/utils/blog";
 
 import "~/styles/globals.css";
 import "~/styles/view-transitions.css";
@@ -14,7 +14,7 @@ const geist = Geist({
 });
 
 interface PageProps {
-  posts?: BlogPost[];
+  posts?: BlogPostSummary[];
 }
 
 const MyApp: AppType<PageProps> = ({ Component, pageProps }) => {
