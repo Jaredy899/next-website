@@ -1,7 +1,6 @@
 import type { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
-import { unstable_ViewTransition as ViewTransition } from 'react';
 import Layout from '~/components/Layout';
 import JCLogo from '~/components/JCLogo';
 import SocialLinks from '~/components/SocialLinks';
@@ -13,6 +12,7 @@ interface HomeProps {
 }
 
 export default function Home({ posts }: HomeProps) {
+
   return (
     <Layout posts={posts}>
       <Head>
@@ -22,13 +22,9 @@ export default function Home({ posts }: HomeProps) {
       </Head>
 
       <div className="content">
-        <Link href="/" className="logo-link">
-          <ViewTransition name="jc-logo">
-            <div className="logo-container">
-              <JCLogo />
-            </div>
-          </ViewTransition>
-        </Link>
+        <div className="logo-container" style={{ viewTransitionName: 'jc-logo' }}>
+          <JCLogo />
+        </div>
         <a
           href="https://home.jaredcervantes.com"
           className="home-link"

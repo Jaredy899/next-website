@@ -19,11 +19,11 @@ There's something about cracking open a cold IPA that just feels right. For me, 
 
 IPAs (India Pale Ales) are renowned for their vibrant hop profiles, and the Imperial IPA takes those characteristics to an exhilarating level. Here's what I consistently appreciate in a great IPA:
 
--   **Citrus & Pine:** That unmistakable hoppy punch that defines the style.
--   **Tropical Fruit Notes:** A delightful complexity that keeps every sip interesting.
--   **Caramel Sweetness:** Often present to perfectly balance the hop bitterness.
--   **Rich Malt Backbone:** Adds depth, body, and smoothness to the overall experience.
--   **Strong but Smooth:** While often higher in ABV, the best IPAs manage to be powerful without being overwhelming.
+- **Citrus & Pine:** That unmistakable hoppy punch that defines the style.
+- **Tropical Fruit Notes:** A delightful complexity that keeps every sip interesting.
+- **Caramel Sweetness:** Often present to perfectly balance the hop bitterness.
+- **Rich Malt Backbone:** Adds depth, body, and smoothness to the overall experience.
+- **Strong but Smooth:** While often higher in ABV, the best IPAs manage to be powerful without being overwhelming.
 
 It's the kind of beer that demands your attention and rewards you for slowing down and savoring it.
 
@@ -65,9 +65,9 @@ There's something magical about being surrounded by people who are just as passi
 
 With so many IPAs out there, what makes certain ones truly stand out? For me, it's about a combination of factors:
 
--   **Perfect Balance:** The interplay of flavor, strength, and drinkability is key.
--   **Bold but Not Brash:** Complex without being confusing, offering layers of taste.
--   **My Go-To:** The perfect companion for treating myself, celebrating, or just finding calm in the chaos.
+- **Perfect Balance:** The interplay of flavor, strength, and drinkability is key.
+- **Bold but Not Brash:** Complex without being confusing, offering layers of taste.
+- **My Go-To:** The perfect companion for treating myself, celebrating, or just finding calm in the chaos.
 
 If you're looking to explore the style, I highly recommend diving into some of my personal favorites. You can't go wrong with **[Bell's Two Hearted IPA](https://bellsbeer.com/beers/two-hearted-ale/)** for its classic balance and incredible hop aroma. For a taste of something truly imperial and bold, **[New Belgium's Voodoo Ranger Imperial IPA](https://www.newbelgium.com/beer/voodoo-ranger-imperial-ipa/)** delivers a powerful yet surprisingly smooth experience. And for those who appreciate a unique hop character with stellar clarity, **[Elysian Space Dust IPA](https://www.elysianbrewing.com/beer/space-dust-ipa)** is always a fantastic choice. Each of these showcases why the IPA style is so beloved and versatile!
 

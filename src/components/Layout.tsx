@@ -1,22 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { startTransition } from 'react';
 import { useTheme } from '~/context/ThemeContext';
 import Sidebar from './Sidebar';
 import type { BlogPost } from '~/utils/blog';
 import Link from 'next/link';
 import JCLogo from './JCLogo';
 import ThemeToggle from './ThemeToggle';
-
-// ViewTransition wrapper component (fallback when React's unstable_ViewTransition is not available)
-interface ViewTransitionProps {
-  name: string;
-  children: React.ReactNode;
-}
-
-const ViewTransition: React.FC<ViewTransitionProps> = ({ children }) => {
-  return <>{children}</>;
-};
+import { useViewTransitionRouter } from '~/utils/viewTransition';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -28,6 +18,7 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
+  const { push: navigateWithTransition } = useViewTransitionRouter();
 
   useEffect(() => {
     setMounted(true);
@@ -39,11 +30,7 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
 
   const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    
-    // Use React's startTransition for navigation
-    startTransition(() => {
-      void router.push(href);
-    });
+    void navigateWithTransition(href);
   };
 
   const layoutClasses = [
@@ -87,11 +74,9 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
           {showHeaderLogo && (
             <div className="center-logo">
               <Link href="/" onClick={(e) => handleNavigation(e, '/')}>
-                <ViewTransition name="jc-logo">
-                  <div className="logo-container">
-                    <JCLogo />
-                  </div>
-                </ViewTransition>
+                <div className="logo-container" style={{ viewTransitionName: 'jc-logo' }}>
+                  <JCLogo />
+                </div>
               </Link>
             </div>
           )}
@@ -106,11 +91,9 @@ const Layout: React.FC<LayoutProps> = ({ children, posts }) => {
         onClose={() => setIsSidebarOpen(false)}
         posts={posts}
       />
-      <ViewTransition name="main-content">
-        <main className="main-content">
-          {children}
-        </main>
-      </ViewTransition>
+      <main className="main-content" style={{ viewTransitionName: 'main-content' }}>
+        {children}
+      </main>
       <style jsx>{`
         .layout {
           min-height: 100vh;

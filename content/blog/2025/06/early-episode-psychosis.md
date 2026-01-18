@@ -1,7 +1,7 @@
 ---
 title: "Early Episode Psychosis"
 description: "What I learned from my recent conference"
-pubDate: 2025-06-09
+pubDate: 2025-06-08
 draft: false
 ---
 
@@ -24,7 +24,7 @@ One of the most impactful presentations was by **[Dr. Pat Deegan](https://www.pa
 Another concept that resonated deeply was **Moral Agency**, presented by **[Dr. Neely Myers](https://people.smu.edu/nmyers/)**. Dr. Myers, a medical and psychological anthropologist, explores how experiencing psychosis can diminish moral agency, which she defines as:
 
 > The freedom to aspire to and achieve a "good life" that allows for intimate relationships and being recognized as a good person within one's social context.
- 
+
 Her research highlights the importance of restoring this sense of agency in the recovery process and the need for "peopled opportunities" and social support for individuals to rebuild their lives.
 
 ### 3. The Vital Role of Family Engagement
@@ -53,6 +53,8 @@ A particularly important discussion centered around **long-acting injectables (L
 - **Early Intervention**: Starting with LAIs early in treatment can establish a strong foundation for recovery. It's often easier to maintain a treatment regimen than to restart one after a relapse.
 
 The conference highlighted that LAIs should be considered as a first-line treatment option, not just as a solution for non-adherence. This aligns with my experience and preference for LAIs in early psychosis care. The key is to present LAIs as a positive choice for better outcomes rather than a last resort.
+
+> In a later blog, I'll explain more about the different Long Acting Injectables and their benefits.
 
 ### 5. Cannabis and Psychosis: A Complex Relationship
 

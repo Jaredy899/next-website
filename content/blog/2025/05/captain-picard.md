@@ -1,7 +1,7 @@
 ---
 title: "Captain Picard"
 description: "My thoughts about Captain Picard."
-pubDate: 2025-05-26
+pubDate: 2025-05-25
 draft: false
 ---
 

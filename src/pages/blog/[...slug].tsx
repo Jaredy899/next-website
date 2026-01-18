@@ -32,7 +32,7 @@ export default function BlogPostPage({ post, posts }: BlogPostPageProps) {
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = getAllPosts();
   const paths = posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.slug.split('/') },
   }));
 
   return {
@@ -42,7 +42,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const slug = params?.slug as string;
+  // Join the slug array back into a string path
+  const slug = Array.isArray(params?.slug) 
+    ? params.slug.join('/') 
+    : (params?.slug as string);
   const post = getPostBySlug(slug);
   const posts = getAllPosts();
 

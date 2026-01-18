@@ -48,4 +48,4 @@ To get started, open your terminal and run:
 sh <(curl -fsSL jaredcervantes.com/mac)
 ```
 
-![fastfetch-mac](https://qmpdliftraf4pov3.public.blob.vercel-storage.com/fastfetch-mac-pbAGCG2s6AYvLC0PW1U03Pdzh2nj8X.webp) 
+![fastfetch-mac](https://qmpdliftraf4pov3.public.blob.vercel-storage.com/fastfetch-mac-pbAGCG2s6AYvLC0PW1U03Pdzh2nj8X.webp)

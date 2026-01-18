@@ -1,9 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { startTransition } from 'react';
 import type { BlogPost } from '~/utils/blog';
 import { formatDate } from '~/utils/date';
+import { useViewTransitionRouter } from '~/utils/viewTransition';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -12,24 +11,20 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, posts }) => {
-  const router = useRouter();
+  const { push: navigateWithTransition } = useViewTransitionRouter();
 
   // Sort posts by date (newest first)
   const sortedPosts = [...posts].sort((a, b) => 
     new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime()
   );
 
-
-
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     // Close sidebar when a link is clicked
     onClose();
     
-    // Use React's startTransition for navigation
-    startTransition(() => {
-      void router.push(href);
-    });
+    // Use view transitions for navigation
+    void navigateWithTransition(href);
   };
 
   return (

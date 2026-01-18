@@ -1,34 +1,41 @@
-/* View Transition Animations for React's <ViewTransition> component */
+/* View Transition Animations - matching Astro website behavior */
 
-/* Default smooth cross-fade for all transitions */
+/* Default page transition - smooth cross-fade */
 ::view-transition-old(root) {
-  animation: fade-out 300ms ease-out;
+  animation: fade-out 200ms ease-out;
 }
 
 ::view-transition-new(root) {
-  animation: fade-in 300ms ease-in;
+  animation: fade-in 200ms ease-in;
 }
 
-/* JC Logo shared element transition */
-::view-transition-old(jc-logo) {
-  animation: morph-out 400ms cubic-bezier(0.4, 0, 0.2, 1);
+/* JC Logo shared element transition - the key animation */
+::view-transition-group(jc-logo) {
+  animation-duration: 400ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+::view-transition-old(jc-logo),
 ::view-transition-new(jc-logo) {
-  animation: morph-in 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* Let the browser handle the morphing animation */
+  animation: none;
+  mix-blend-mode: normal;
 }
 
 /* Main content transitions */
 ::view-transition-old(main-content) {
-  animation: fade-out 250ms ease-out;
+  animation: fade-slide-out 250ms ease-out;
 }
 
 ::view-transition-new(main-content) {
-  animation: fade-in 250ms ease-in 50ms both;
+  animation: fade-slide-in 250ms ease-in;
 }
 
-/* Simple keyframe animations */
+/* Keyframe animations */
 @keyframes fade-out {
+  from {
+    opacity: 1;
+  }
   to {
     opacity: 0;
   }
@@ -38,24 +45,38 @@
   from {
     opacity: 0;
   }
-}
-
-@keyframes morph-out {
   to {
-    opacity: 0;
+    opacity: 1;
   }
 }
 
-@keyframes morph-in {
+@keyframes fade-slide-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@keyframes fade-slide-in {
   from {
     opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 /* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
   ::view-transition-old(*),
   ::view-transition-new(*) {
-    animation-duration: 0.1s !important;
+    animation-duration: 0.01ms !important;
   }
 } 

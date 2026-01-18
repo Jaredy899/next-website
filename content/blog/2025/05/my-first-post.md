@@ -1,6 +1,6 @@
 ---
 title: "My First Post"
-description: "My first blog post! I built this blog using Next.js and added cool view transitions."
+description: "My first blog post! I built this blog using Astro and added cool view transitions."
 pubDate: 2025-05-19
 draft: false
 ---
@@ -16,7 +16,7 @@ This is going to be my thoughts on anything and everything. It's mainly a way of
 * 📰 Politics
 * 🎹 Music
 
-I built this website using [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), and [React](https://react.dev/) with [View Transitions](https://react.dev/blog/2025/04/23/react-labs-view-transitions-activity-and-more).
+I built this website using [Astro](https://astro.build/) and [View Transitions](https://docs.astro.build/en/guides/view-transitions/).
 
 This post itself is written in Markdown.
 
@@ -24,14 +24,14 @@ This post itself is written in Markdown.
 
 Here are some of the key ingredients that went into making this blog:
 
-* **Next.js:** The framework powering the whole thing. I'm doing this project in several frameworks, and to be honest, I prefer Astro or Nuxt...
+* **Astro:** The framework powering the whole thing. I'm really impressed with how fast and easy it is to work with.
 * **Markdown:** For writing all the content (like this post!). It's so simple and effective.
-* **View Transitions:** To create those smooth animations when you click between pages. It's a really nice touch! Doing this in React is a bit more difficult than in Astro, but it's still possible.
+* **View Transitions:** To create those smooth animations when you click between pages. It's a really nice touch!
 * **Custom Styling:** I've added some personal touches to the design to make it my own.
 * **Cursor:** Of course, I vibe coded it... All while learning how to do it more myself.
 
 ```js
 // A little code snippet to show off code blocks!
-const greeting = "Hello, Next.js Blog!";
+const greeting = "Hello, Astro Blog!";
 console.log(greeting);
 ```

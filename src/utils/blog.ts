@@ -20,49 +20,41 @@ interface FrontMatter {
   draft?: boolean;
 }
 
-export function getAllPosts(): BlogPost[] {
-  const fileNames = fs.readdirSync(postsDirectory);
-  const allPostsData = fileNames
-    .filter((fileName) => {
-      // Only include .mdx files
-      return fileName.endsWith('.mdx');
-    })
-    .map((fileName) => {
-      // Remove ".mdx" from file name to get slug
-      const slug = fileName.replace(/\.mdx$/, '');
+/**
+ * Recursively find all markdown files in a directory
+ */
+function getAllMarkdownFiles(dir: string, fileList: string[] = []): string[] {
+  const files = fs.readdirSync(dir);
 
-      // Read markdown file as string
-      const fullPath = path.join(postsDirectory, fileName);
-      const fileContents = fs.readFileSync(fullPath, 'utf8');
+  files.forEach((file) => {
+    const filePath = path.join(dir, file);
+    const stat = fs.statSync(filePath);
 
-      // Use gray-matter to parse the post metadata section
-      const { data, content } = matter(fileContents);
-      const frontMatter = data as FrontMatter;
+    if (stat.isDirectory()) {
+      getAllMarkdownFiles(filePath, fileList);
+    } else if (file.endsWith('.md') || file.endsWith('.mdx')) {
+      fileList.push(filePath);
+    }
+  });
 
-      // Ensure pubDate is a string in ISO format
-      const pubDate = new Date(frontMatter.pubDate).toISOString();
-
-      return {
-        slug,
-        title: frontMatter.title,
-        excerpt: frontMatter.description ?? '',
-        pubDate,
-        content,
-        draft: frontMatter.draft ?? false,
-      };
-    });
-
-  // Sort posts by date
-  return allPostsData
-    .filter((post) => !post.draft)
-    .sort((a, b) => (a.pubDate < b.pubDate ? 1 : -1));
+  return fileList;
 }
 
-export function getPostBySlug(slug: string): BlogPost | null {
-  try {
-    // Try .mdx first
-    const fullPath = path.join(postsDirectory, `${slug}.mdx`);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
+export function getAllPosts(): BlogPost[] {
+  const allFiles = getAllMarkdownFiles(postsDirectory);
+  
+  const allPostsData = allFiles.map((filePath) => {
+    // Get relative path from postsDirectory to use as slug
+    const relativePath = path.relative(postsDirectory, filePath);
+    // Remove extension and normalize path separators to forward slashes
+    const slug = relativePath
+      .replace(/\.(md|mdx)$/, '')
+      .replace(/\\/g, '/');
+
+    // Read markdown file as string
+    const fileContents = fs.readFileSync(filePath, 'utf8');
+
+    // Use gray-matter to parse the post metadata section
     const { data, content } = matter(fileContents);
     const frontMatter = data as FrontMatter;
 
@@ -77,11 +69,20 @@ export function getPostBySlug(slug: string): BlogPost | null {
       content,
       draft: frontMatter.draft ?? false,
     };
-  } catch {
-    // If .mdx doesn't exist, try .md
+  });
+
+  // Sort posts by date
+  return allPostsData
+    .filter((post) => !post.draft)
+    .sort((a, b) => (a.pubDate < b.pubDate ? 1 : -1));
+}
+
+export function getPostBySlug(slug: string): BlogPost | null {
+  // Try .mdx first
+  const mdxPath = path.join(postsDirectory, `${slug}.mdx`);
+  if (fs.existsSync(mdxPath)) {
     try {
-      const fullPath = path.join(postsDirectory, `${slug}.md`);
-      const fileContents = fs.readFileSync(fullPath, 'utf8');
+      const fileContents = fs.readFileSync(mdxPath, 'utf8');
       const { data, content } = matter(fileContents);
       const frontMatter = data as FrontMatter;
 
@@ -100,4 +101,30 @@ export function getPostBySlug(slug: string): BlogPost | null {
       return null;
     }
   }
+
+  // If .mdx doesn't exist, try .md
+  const mdPath = path.join(postsDirectory, `${slug}.md`);
+  if (fs.existsSync(mdPath)) {
+    try {
+      const fileContents = fs.readFileSync(mdPath, 'utf8');
+      const { data, content } = matter(fileContents);
+      const frontMatter = data as FrontMatter;
+
+      // Ensure pubDate is a string in ISO format
+      const pubDate = new Date(frontMatter.pubDate).toISOString();
+
+      return {
+        slug,
+        title: frontMatter.title,
+        excerpt: frontMatter.description ?? '',
+        pubDate,
+        content,
+        draft: frontMatter.draft ?? false,
+      };
+    } catch {
+      return null;
+    }
+  }
+
+  return null;
 } 
