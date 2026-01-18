@@ -45,7 +45,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   // Join the slug array back into a string path
   const slug = Array.isArray(params?.slug) 
     ? params.slug.join('/') 
-    : (params?.slug as string);
+    : params!.slug!;
   const post = getPostBySlug(slug);
   const posts = getAllPosts();
 

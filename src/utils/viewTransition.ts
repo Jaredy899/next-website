@@ -13,10 +13,10 @@ export function useViewTransitionRouter() {
       if (
         typeof document !== 'undefined' &&
         'startViewTransition' in document &&
-        typeof (document as any).startViewTransition === 'function'
+        document.startViewTransition
       ) {
         // Use View Transitions API
-        const transition = (document as any).startViewTransition(async () => {
+        const transition = document.startViewTransition(async () => {
           await router.push(href);
         });
         
@@ -46,9 +46,9 @@ export function navigateWithTransition(
   if (
     typeof document !== 'undefined' &&
     'startViewTransition' in document &&
-    typeof (document as any).startViewTransition === 'function'
+    document.startViewTransition
   ) {
-    (document as any).startViewTransition(async () => {
+    document.startViewTransition(async () => {
       await router.push(href);
     });
   } else {

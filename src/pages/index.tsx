@@ -1,6 +1,5 @@
 import type { GetStaticProps } from 'next';
 import Head from 'next/head';
-import Link from 'next/link';
 import Layout from '~/components/Layout';
 import JCLogo from '~/components/JCLogo';
 import SocialLinks from '~/components/SocialLinks';
