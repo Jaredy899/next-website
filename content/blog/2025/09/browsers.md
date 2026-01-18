@@ -73,14 +73,14 @@ rooted in open-source principles, Thorium remains a strong contender.
 ### ![Firefox](https://avatars.githubusercontent.com/u/148481591?s=48&v=4) Firefox: The Old Faithful (with a catch)
 
 {/* Theo's Video Embed (Responsive and Centered) */}
-<div style="position: relative; width: 100%; max-width: 560px; margin: 0 auto; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+<div style={{position: 'relative', width: '100%', maxWidth: '560px', margin: '0 auto', paddingBottom: '56.25%', height: 0, overflow: 'hidden'}}>
   <iframe
     src="https://www.youtube.com/embed/mmjUlFIaNLE?si=Ig8Gw9Ope-PZ7m8Q"
     title="YouTube video player"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; display: block;"
+    referrerPolicy="strict-origin-when-cross-origin"
+    allowFullScreen
+    style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none', display: 'block'}}
   ></iframe>
 </div>
 
@@ -135,14 +135,14 @@ profoundly impact a user's choice.
 ### Theo's Take on Browsers: A Different Perspective
 
 {/* Theo's Video Embed (Responsive and Centered) */}
-<div style="position: relative; width: 100%; max-width: 560px; margin: 0 auto; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+<div style={{position: 'relative', width: '100%', maxWidth: '560px', margin: '0 auto', paddingBottom: '56.25%', height: 0, overflow: 'hidden'}}>
   <iframe
     src="https://www.youtube.com/embed/m1QrNF9wZao?si=gAGSoAbqaeJBJ9ng"
     title="YouTube video player"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; display: block;"
+    referrerPolicy="strict-origin-when-cross-origin"
+    allowFullScreen
+    style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none', display: 'block'}}
   ></iframe>
 </div>
 
