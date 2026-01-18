@@ -43,14 +43,14 @@ By repeating this idea, the episode drives home that paranoia doesn’t arrive a
 
 ---
 
-<div style="position: relative; width: 100%; max-width: 560px; margin: 0 auto; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+<div style={{position: 'relative', width: '100%', maxWidth: '560px', margin: '0 auto', paddingBottom: '56.25%', height: 0, overflow: 'hidden'}}>
   <iframe
     src="https://www.youtube.com/embed/CbQvCzWkATA?si=uEZsqno7prfnjMyV"
     title="YouTube video player"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; display: block;"
+    referrerPolicy="strict-origin-when-cross-origin"
+    allowFullScreen
+    style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none', display: 'block'}}
   ></iframe>
 </div>
 

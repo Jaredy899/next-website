@@ -8,7 +8,7 @@ draft: false
 
 Over the course of contributing to open source projects, testing scripts, and just tinkering, I’ve had the chance to try out a variety of Linux distributions—as well as macOS and Windows. Each one has its own strengths, quirks, and communities.  
 
-To help manage and streamline my setups across all these systems, I built a small utility I call **[OSutil](/blog/osutil)**. It’s been a huge help in keeping my environments consistent and easier to configure.
+To help manage and streamline my setups across all these systems, I built a small utility I call **[OSutil](/blog/2025/08/osutil)**. It’s been a huge help in keeping my environments consistent and easier to configure.
 
 Here’s a quick rundown of my thoughts on each system I’ve used so far.
 

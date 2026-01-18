@@ -29,7 +29,7 @@ OSutil has its roots in Chris Titus's [linutil](https://github.com/ChrisTitusTec
 
 ![OSutil](https://github.com/Jaredy899/osutil/blob/main/.github/Linux.png?raw=true)
 
-That's where the idea for OSutil came from. I realized I already had a collection of scripts and tools I'd built for my Windows and macOS environments. You might remember my previous blog posts detailing my [Windows setup](/blog/my-windows-setup) and my [macOS configuration](/blog/my-mac-setup). OSutil is, in a way, the culmination of those efforts, bringing everything together under one program. I also originally had a Linux setup simliar to these setups (and even had a blog written about it). But I started work on OSutil after a little insirpation.
+That's where the idea for OSutil came from. I realized I already had a collection of scripts and tools I'd built for my Windows and macOS environments. You might remember my previous blog posts detailing my [Windows setup](/blog/2025/06/my-windows-setup) and my [macOS configuration](/blog/2025/07/my-mac-setup). OSutil is, in a way, the culmination of those efforts, bringing everything together under one program. I also originally had a Linux setup simliar to these setups (and even had a blog written about it). But I started work on OSutil after a little insirpation.
 
 ### Building a Cross-Platform Solution
 
