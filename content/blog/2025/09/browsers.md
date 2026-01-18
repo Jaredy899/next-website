@@ -72,7 +72,7 @@ rooted in open-source principles, Thorium remains a strong contender.
 
 ### ![Firefox](https://avatars.githubusercontent.com/u/148481591?s=48&v=4) Firefox: The Old Faithful (with a catch)
 
-<!-- Theo's Video Embed (Responsive and Centered) -->
+{/* Theo's Video Embed (Responsive and Centered) */}
 <div style="position: relative; width: 100%; max-width: 560px; margin: 0 auto; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe
     src="https://www.youtube.com/embed/mmjUlFIaNLE?si=Ig8Gw9Ope-PZ7m8Q"
@@ -134,7 +134,7 @@ profoundly impact a user's choice.
 
 ### Theo's Take on Browsers: A Different Perspective
 
-<!-- Theo's Video Embed (Responsive and Centered) -->
+{/* Theo's Video Embed (Responsive and Centered) */}
 <div style="position: relative; width: 100%; max-width: 560px; margin: 0 auto; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe
     src="https://www.youtube.com/embed/m1QrNF9wZao?si=gAGSoAbqaeJBJ9ng"
